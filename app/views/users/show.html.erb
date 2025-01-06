@@ -23,7 +23,7 @@
 <p>
   <strong>Photo:</strong>
   <% if @user.photo.attached? %>
-    <%= image_tag @user.photo %>
+    <%= image_tag @user.photo, width: 400, height: 300, crop: :fill %>
   <% else %>
     No photo uploaded
   <% end %>
