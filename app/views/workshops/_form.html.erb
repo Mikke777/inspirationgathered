@@ -1,0 +1,14 @@
+<%= simple_form_for(@workshop, html: { multipart: true }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, required: true %>
+    <%= f.input :description, as: :text, required: true %>
+    <%= f.input :photo, as: :file, required: false %>
+    <%= f.input :date, as: :datetime, required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

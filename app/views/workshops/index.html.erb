@@ -1,0 +1,24 @@
+<h1>All Workshops</h1>
+
+<% if @workshops.empty? %>
+  <p>No workshops available</p>
+<% else %>
+  <% @workshops.each do |workshop| %>
+    <% if workshop.photo.attached? %>
+      <%= cl_image_tag workshop.photo.key, width: 400, height: 300, crop: :fill %>
+    <% else %>
+      <p>No photo available</p>
+    <% end %>
+    <h2><%= link_to workshop.title, workshop_path(workshop) %></h2>
+    <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+    <p><%= workshop.description %></p>
+    <% if user_signed_in? && workshop.user == current_user %>
+      <%= link_to 'Edit', edit_workshop_path(workshop) %>
+      <%= link_to 'Destroy', workshop, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Workshop', new_workshop_path %>
+<% end %>

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get "users/show"
   devise_for :users
-  root to: "pages#home"
+  root to: "workshops#index"
   resources :users, only: [:show]
+  resources :workshops
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
