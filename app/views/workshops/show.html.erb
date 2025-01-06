@@ -1,0 +1,21 @@
+<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/show.html.erb -->
+<h1><%= @workshop.title %></h1>
+
+<p><%= @workshop.description %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @workshop.date.strftime("%B %d, %Y %H:%M") %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <% if @workshop.photo.attached? %>
+    <%= cl_image_tag @workshop.photo.key, width: 400, height: 300, crop: :fill %>
+  <% else %>
+    No photo uploaded
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_workshop_path(@workshop) %>
+<%= link_to 'Back', workshops_path %>
