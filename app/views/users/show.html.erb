@@ -19,3 +19,12 @@
   <strong>Description:</strong>
   <%= @user.description %>
 </p>
+
+<p>
+  <strong>Photo:</strong>
+  <% if @user.photo.attached? %>
+    <%= image_tag @user.photo %>
+  <% else %>
+    No photo uploaded
+  <% end %>
+</p>

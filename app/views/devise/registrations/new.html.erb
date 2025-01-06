@@ -20,6 +20,9 @@
                 as: :text,
                 input_html: { rows: 5 },
                 required: true%>
+    <%= f.input :photo,
+                as: :file,
+                required: true %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

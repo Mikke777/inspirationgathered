@@ -15,6 +15,9 @@
                 as: :text,
                 input_html: { rows: 5 },
                 required: true%>
+    <%= f.input :photo,
+                as: :file,
+                required: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
