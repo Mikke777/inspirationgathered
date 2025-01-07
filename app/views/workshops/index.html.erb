@@ -12,9 +12,12 @@
     <h2><%= link_to workshop.title, workshop_path(workshop) %></h2>
     <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
     <p><%= workshop.description %></p>
+    <p><strong>Host:</strong> <%= workshop.user.last_name %></p>
+    <% if workshop.user.photo.attached? %>
+      <%= cl_image_tag workshop.user.photo.key, width: 30, height: 30, crop: :fill %>
+    <% else %>
+      <p>No photo available</p>
+    <% end %>
   <% end %>
 <% end %>
 
-<% if user_signed_in? %>
-  <%= link_to 'New Workshop', new_workshop_path %>
-<% end %>
