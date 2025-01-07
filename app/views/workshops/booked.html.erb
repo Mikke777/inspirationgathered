@@ -1,0 +1,20 @@
+<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/booked.html.erb -->
+<h1>My Booked Workshops</h1>
+
+<% if @booked_workshops.empty? %>
+  <p>You have not booked any workshops.</p>
+<% else %>
+  <% @booked_workshops.each do |workshop| %>
+    <div class="workshop">
+      <% if workshop.photo.attached? %>
+        <%= cl_image_tag workshop.photo.key, width: 400, height: 300, crop: :fill %>
+      <% else %>
+        <p>No photo available</p>
+      <% end %>
+      <h2><%= link_to workshop.title, workshop_path(workshop) %></h2>
+      <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+      <p><%= workshop.description %></p>
+      <%= button_to 'Cancel Booking', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+<% end %>

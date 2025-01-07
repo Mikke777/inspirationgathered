@@ -21,6 +21,15 @@
     No photo uploaded
   <% end %>
 </p>
+
+<% if user_signed_in? %>
+  <% if @workshop.booked_users.include?(current_user) %>
+    <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+    <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post %>
+  <% end %>
+<% end %>
+
 <% if user_signed_in? && @workshop.user == current_user %>
   <%= link_to 'Edit', edit_workshop_path(@workshop) %>
   <%= link_to 'Destroy', @workshop, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
