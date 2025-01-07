@@ -39,6 +39,10 @@ class WorkshopsController < ApplicationController
     redirect_to root_path, notice: 'Workshop was successfully destroyed.'
   end
 
+  def booked
+    @booked_workshops = current_user.booked_workshops
+  end
+
   private
 
   def set_workshop
