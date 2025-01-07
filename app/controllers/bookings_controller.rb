@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_booking, only: [:show, :destroy, :chat]
+  before_action :authorize_user!, only: [:show, :chat]
 
   def create
     @workshop = Workshop.find(params[:workshop_id])
@@ -12,10 +14,30 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @messages = @booking.messages
+  end
+
+  def chat
+    @messages = @booking.messages
+  end
+
   def destroy
     @booking = current_user.bookings.find(params[:id])
     @workshop = @booking.workshop
     @booking.destroy
     redirect_to @booking.workshop, notice: 'Your booking has been canceled.'
+  end
+
+  private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @booking.user == current_user || @booking.workshop.user == current_user
+      redirect_to root_path, alert: 'You are not authorized to view this page.'
+    end
   end
 end

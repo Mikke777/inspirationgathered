@@ -1,0 +1,18 @@
+<h1>Chat with <%= @booking.workshop.user.email %></h1>
+
+<%= turbo_stream_from "booking_#{@booking.id}_messages" %>
+<div id="messages" class="messages">
+  <% @messages.each do |message| %>
+    <%= render "messages/message", message: message %>
+  <% end %>
+</div>
+
+<%= simple_form_for [@booking, Message.new], url: workshop_booking_messages_path(@booking.workshop, @booking), data: { turbo_stream: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Send Message", class: "btn btn-primary" %>
+  </div>
+<% end %>

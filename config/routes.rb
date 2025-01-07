@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   root to: "workshops#index"
   resources :users, only: [:show]
   resources :workshops do
-    resources :bookings, only: [:create, :destroy]
+    resources :bookings, only: [:create, :destroy] do
+      member do
+        get :chat
+      end
+      resources :messages, only: [:create]
+    end
     collection do
       get :booked
+      get :dashboard
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

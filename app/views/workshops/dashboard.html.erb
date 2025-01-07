@@ -1,0 +1,26 @@
+<h1>My Workshops Dashboard</h1>
+
+<% @workshops.each do |workshop| %>
+  <h2><%= workshop.title %></h2>
+  <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+  <p><%= workshop.description %></p>
+
+  <h3>Bookings</h3>
+  <% if workshop.bookings.empty? %>
+    <p>No bookings yet.</p>
+  <% else %>
+    <ul>
+      <% workshop.bookings.each do |booking| %>
+        <li>
+          <p><strong>Booked by:</strong> <%= booking.user.email %></p>
+          <% if booking.messages.any? %>
+            <p><strong>Messages:</strong> <%= booking.messages.count %></p>
+            <%= link_to 'View Chat', chat_workshop_booking_path(workshop, booking), class: "btn btn-primary" %>
+          <% else %>
+            <p>No messages yet.</p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
