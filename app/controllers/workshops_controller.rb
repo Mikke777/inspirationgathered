@@ -1,14 +1,13 @@
-# filepath: /home/mic/code/Mikke777/inspirationgathered/app/controllers/workshops_controller.rb
 class WorkshopsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  before_action :set_workshop, only: [:edit, :update, :destroy]
+  before_action :set_workshop_for_show, only: [:show]
 
   def index
     @workshops = Workshop.all
   end
 
   def show
-    @workshop = Workshop.find(params[:id])
   end
 
   def new
@@ -44,6 +43,10 @@ class WorkshopsController < ApplicationController
 
   def set_workshop
     @workshop = current_user.workshops.find(params[:id])
+  end
+
+  def set_workshop_for_show
+    @workshop = Workshop.find(params[:id])
   end
 
   def workshop_params
