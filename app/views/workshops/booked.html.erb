@@ -15,6 +15,7 @@
       <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
       <p><%= workshop.description %></p>
       <%= button_to 'Cancel Booking', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Chat with Host', chat_workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), class: "btn btn-primary" %>
     </div>
   <% end %>
 <% end %>
