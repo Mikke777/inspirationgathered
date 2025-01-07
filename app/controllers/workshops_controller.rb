@@ -8,6 +8,11 @@ class WorkshopsController < ApplicationController
   end
 
   def show
+    @markers = [{
+      lat: @workshop.latitude,
+      lng: @workshop.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { workshop: @workshop }),
+    }]
   end
 
   def new
@@ -54,6 +59,6 @@ class WorkshopsController < ApplicationController
   end
 
   def workshop_params
-    params.require(:workshop).permit(:title, :description, :photo, :date)
+    params.require(:workshop).permit(:title, :description, :photo, :date, :address, :latitude, :longitude)
   end
 end
