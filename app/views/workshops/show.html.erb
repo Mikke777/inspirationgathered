@@ -4,6 +4,11 @@
 <p><%= @workshop.description %></p>
 
 <p>
+  <strong>Host:</strong>
+  <%= link_to @workshop.user.last_name, user_path(@workshop.user) %>
+</p>
+
+<p>
   <strong>Date:</strong>
   <%= @workshop.date.strftime("%B %d, %Y %H:%M") %>
 </p>
