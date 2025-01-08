@@ -1,34 +1,44 @@
-<h1>All Workshops</h1>
-<div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: workshops_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Type a keyword"
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-    <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: workshops_path, method: :get, class: "d-flex w-100" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control me-2",
+              placeholder: "Type a keyword"
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<% if @workshops.empty? %>
-  <p>No workshops available</p>
-<% else %>
-  <% @workshops.each do |workshop| %>
-    <% if workshop.photo.attached? %>
-      <%= cl_image_tag workshop.photo.key, width: 400, height: 300, crop: :fill %>
-    <% else %>
-      <p>No photo available</p>
-    <% end %>
-    <h2><%= link_to workshop.title, workshop_path(workshop) %></h2>
-    <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
-    <p><%= workshop.description %></p>
-    <p><strong>Host:</strong> <%= workshop.user.last_name %></p>
-    <% if workshop.user.photo.attached? %>
-      <%= cl_image_tag workshop.user.photo.key, width: 30, height: 30, crop: :fill %>
-    <% else %>
-      <p>No photo available</p>
-    <% end %>
+  <% if @workshops.empty? %>
+    <p>No workshops available</p>
+  <% else %>
+    <div class="row">
+      <% @workshops.each do |workshop| %>
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 d-flex flex-column">
+            <% if workshop.photo.attached? %>
+              <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+            <% end %>
+            <div class="card-body p-2 d-flex flex-column">
+              <h2 class="card-title h6"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none" %></h2>
+              <p class="card-text small"><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+              <p class="card-text small card-description"><%= workshop.description %></p>
+              <div class="d-flex align-items-center mt-auto">
+                <% if workshop.user.photo.attached? %>
+                  <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+                <% else %>
+                  <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+                <% end %>
+                <p class="card-text m-0 small"><%= link_to workshop.user.last_name, user_path(workshop.user), class: "text-decoration-none" %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
