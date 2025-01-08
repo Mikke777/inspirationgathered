@@ -1,41 +1,60 @@
-<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/show.html.erb -->
-<h1><%= @workshop.title %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 px-0">
+      <div style="width: 100%; height: 100%;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+    <div class="col-md-9">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <% if @workshop.photo.attached? %>
+            <%= cl_image_tag @workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+            <% else %>
+            <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <% if @workshop.user.photo.attached? %>
+              <%= image_tag @workshop.user.photo, class: "img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "noimage.jpg", class: "img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1><%= @workshop.title %></h1>
+        <p><%= @workshop.description %></p>
+        <p>Address: <%= @workshop.address %></p>
+      </div>
 
-<p><%= @workshop.description %></p>
 
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-<p>
-  <strong>Host:</strong>
-  <%= link_to @workshop.user.last_name, user_path(@workshop.user) %>
-</p>
+      <p>
+      <strong>Host:</strong>
+      <%= link_to @workshop.user.last_name, user_path(@workshop.user) %>
+      </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @workshop.date.strftime("%B %d, %Y %H:%M") %>
-</p>
+      <div>
+      <strong>Date:</strong>
+      <%= @workshop.date.strftime("%B %d, %Y %H:%M") %>
+      </p>
+      <% if user_signed_in? && @workshop.user != current_user  %>
+      <% if @workshop.booked_users.include?(current_user) %>
+        <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <% else %>
+        <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn btn-primary" %>
+      <% end %>
+      <% end %>
 
-<p>
-  <strong>Photo:</strong>
-  <% if @workshop.photo.attached? %>
-    <%= cl_image_tag @workshop.photo.key, width: 400, height: 300, crop: :fill %>
-  <% else %>
-    No photo uploaded
-  <% end %>
-</p>
-
-<% if user_signed_in? %>
-  <% if @workshop.booked_users.include?(current_user) %>
-    <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% else %>
-    <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post %>
-  <% end %>
-<% end %>
-
-<% if user_signed_in? && @workshop.user == current_user %>
-  <%= link_to 'Edit', edit_workshop_path(@workshop) %>
-  <%= link_to 'Destroy', @workshop, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' } %>
-<% end %>
+      <% if user_signed_in? && @workshop.user == current_user %>
+      <%= link_to 'Edit', edit_workshop_path(@workshop), class: "btn btn-warning" %>
+      <%= link_to 'Destroy', @workshop, method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
