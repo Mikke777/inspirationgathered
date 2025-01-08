@@ -1,26 +1,32 @@
-<h1>My Workshops Dashboard</h1>
+<div class="container my-5">
+  <h1 class="mb-4">My Workshops Dashboard</h1>
 
-<% @workshops.each do |workshop| %>
-  <h2><%= workshop.title %></h2>
-  <p><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
-  <p><%= workshop.description %></p>
+  <% @workshops.each do |workshop| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title"><%= workshop.title %></h2>
+        <p class="card-text"><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+        <p class="card-text"><%= workshop.description %></p>
 
-  <h3>Bookings</h3>
-  <% if workshop.bookings.empty? %>
-    <p>No bookings yet.</p>
-  <% else %>
-    <ul>
-      <% workshop.bookings.each do |booking| %>
-        <li>
-          <p><strong>Booked by:</strong> <%= booking.user.email %></p>
-          <% if booking.messages.any? %>
-            <p><strong>Messages:</strong> <%= booking.messages.count %></p>
-            <%= link_to 'View Chat', chat_workshop_booking_path(workshop, booking), class: "btn btn-primary" %>
-          <% else %>
-            <p>No messages yet.</p>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+        <h3 class="mt-4">Bookings</h3>
+        <% if workshop.bookings.empty? %>
+          <p class="text-muted">No bookings yet.</p>
+        <% else %>
+          <ul class="list-group">
+            <% workshop.bookings.each do |booking| %>
+              <li class="list-group-item">
+                <p><strong>Booked by:</strong> <%= booking.user.email %></p>
+                <% if booking.messages.any? %>
+                  <p><strong>Messages:</strong> <%= booking.messages.count %></p>
+                  <%= link_to 'View Chat', chat_workshop_booking_path(workshop, booking), class: "btn btn-primary" %>
+                <% else %>
+                  <p class="text-muted">No messages yet.</p>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>
