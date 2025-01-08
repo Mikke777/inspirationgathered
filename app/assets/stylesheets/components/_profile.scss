@@ -1,0 +1,9 @@
+.workshop-link-profile {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: green; /* Change to your desired hover color */
+    text-decoration: underline;
+  }
+}
