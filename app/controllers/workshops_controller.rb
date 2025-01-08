@@ -5,6 +5,9 @@ class WorkshopsController < ApplicationController
 
   def index
     @workshops = Workshop.all
+    if params[:query].present?
+      @workshops = @workshops.global_search(params[:query])
+    end
   end
 
   def show

@@ -220,6 +220,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     popper_js (2.11.8)
     psych (5.2.2)
       date
@@ -390,6 +393,7 @@ DEPENDENCIES
   geocoder
   importmap-rails (~> 1.2.3)
   pg (~> 1.1)
+  pg_search
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
   rubocop-rails-omakase
