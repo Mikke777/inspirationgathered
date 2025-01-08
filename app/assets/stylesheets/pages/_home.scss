@@ -1,1 +1,31 @@
 // Specific CSS for your home-page
+* {
+  outline: 1px solid red; /* Add a red outline to all elements */
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.875rem;
+}
+
+.rounded-circle {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 10px;
+}
+
+.card-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

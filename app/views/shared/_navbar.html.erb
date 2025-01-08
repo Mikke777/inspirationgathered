@@ -1,7 +1,8 @@
+<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/shared/_navbar.html.erb -->
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo_insp.jpg", style: "height: 5rem; width: auto;" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,14 +22,12 @@
             <%= link_to "My Dashboard", dashboard_workshops_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <% if current_user.photo.attached? %>
-                  <%= image_tag current_user.photo, class: "avatar", alt: "dropdown menu" %>
-                <% else %>
-                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-                <% end %>
-              </a>
+            <a href="#" class="avatar-container" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.photo.attached? %>
+                <%= image_tag current_user.photo, class: "avatar", alt: "dropdown menu" %>
+              <% else %>
+                <%= image_tag "noimageuser.jpg", class: "avatar", alt: "dropdown menu" %>
+              <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to 'New Workshop', new_workshop_path, class:"dropdown-item" %>
