@@ -1,18 +1,23 @@
-<h1>Chat with <%= @booking.workshop.user.email %></h1>
+<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/bookings/chat.html.erb -->
+<div class="chat">
+  <h1>Chat with <%= @other_user.name %> about <%= @booking.workshop.title %></h1>
 
-<%= turbo_stream_from "booking_#{@booking.id}_messages" %>
-<div id="messages" class="messages">
-  <% @messages.each do |message| %>
-    <%= render "messages/message", message: message %>
+  <%= turbo_stream_from "booking_#{@booking.id}_messages" %>
+  <div id="messages" class="messages">
+    <% @messages.each do |message| %>
+      <%= render "messages/message", message: message, user: current_user %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@booking, Message.new], url: workshop_booking_messages_path(@booking.workshop, @booking), data: { turbo_stream: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
+    <div id="new_message">
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Send Message", class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= simple_form_for [@booking, Message.new], url: workshop_booking_messages_path(@booking.workshop, @booking), data: { turbo_stream: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Send Message", class: "btn btn-primary" %>
-  </div>
-<% end %>
