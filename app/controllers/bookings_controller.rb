@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
 
   def chat
     @messages = @booking.messages
+    @other_user = @booking.user == current_user ? @booking.workshop.user : @booking.user
   end
 
   def destroy
