@@ -1,0 +1,29 @@
+<% if workshops.empty? %>
+  <p>No workshops available</p>
+<% else %>
+  <div class="row">
+    <% workshops.each do |workshop| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100 d-flex flex-column">
+          <% if workshop.photo.attached? %>
+            <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+          <% else %>
+            <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+          <% end %>
+          <div class="card-body p-2 d-flex flex-column">
+            <h2 class="card-title h6"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none", data: { turbo_frame: "_top" } %></h2>
+            <p class="card-text small"><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+            <div class="d-flex align-items-center mt-auto">
+              <% if workshop.user.photo.attached? %>
+                <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+              <% else %>
+                <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+              <% end %>
+              <p class="card-text m-0 small"><%= link_to workshop.user.last_name, user_path(workshop.user), class: "text-decoration-none" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

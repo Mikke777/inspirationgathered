@@ -1,0 +1,4 @@
+<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/index.turbo_stream.erb -->
+<%= turbo_stream.replace "workshops" do %>
+  <%= render partial: "workshops_list", locals: { workshops: @workshops } %>
+<% end %>
