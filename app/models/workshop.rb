@@ -11,7 +11,7 @@ class Workshop < ApplicationRecord
 
 
   pg_search_scope :global_search,
-  against: [ :title, :description ],
+  against: [ :title, :description, :address ],
   associated_against: {
     user: [ :name, :last_name ]
   },
