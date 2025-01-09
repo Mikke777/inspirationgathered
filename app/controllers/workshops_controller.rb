@@ -8,11 +8,6 @@ class WorkshopsController < ApplicationController
     if params[:query].present?
       @workshops = @workshops.global_search(params[:query])
     end
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
   end
 
   def show

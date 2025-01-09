@@ -18,10 +18,8 @@
   </head>
 
   <body style="background-color: #b9d1fc" data-current-user-id="<%= current_user ? current_user.id : "" %>"><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
+    <%= render "shared/flashes" %>
     <%= yield %>
-
     <%= render "shared/footer" %>
   </body>
 </html>
