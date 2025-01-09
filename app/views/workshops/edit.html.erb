@@ -1,18 +1,26 @@
-<%= simple_form_for(@workshop, html: { multipart: true }) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto my-3">
+      <h1>Edit Workshop</h1>
+      <%= simple_form_for(@workshop, html: { multipart: true }) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :title, required: true %>
-    <%= f.input :description, as: :text, required: true %>
-    <%= f.input :photo, as: :file, required: false %>
-    <%= f.input :date, as: :datetime, required: true %>
-    <%= f.input :address,
-                input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
-                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-    %>
-  </div>
+        <div class="form-inputs">
+          <%= f.input :title, required: true %>
+          <%= f.input :description, as: :text, required: true %>
+          <%= f.input :photo, as: :file, required: false %>
+          <%= f.input :date, as: :datetime, required: true %>
+          <%= f.input :address,
+                      input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+                      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+          %>
+        </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+        <div class="form-actions d-flex justify-content-between">
+          <%= f.button :submit, class:"btn btn-warning" %>
+          <%= link_to 'Back', workshops_path, class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
