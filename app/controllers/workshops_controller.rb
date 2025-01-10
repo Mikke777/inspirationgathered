@@ -8,6 +8,13 @@ class WorkshopsController < ApplicationController
     if params[:query].present?
       @workshops = @workshops.global_search(params[:query])
     end
+    @markers = @workshops.geocoded.map do |workshop|
+      {
+        lat: workshop.latitude,
+        lng: workshop.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { workshop: workshop }),
+      }
+    end
   end
 
   def show
