@@ -45,7 +45,7 @@ class WorkshopsController < ApplicationController
     if @workshop.update(workshop_params)
       redirect_to @workshop, notice: 'Workshop was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
