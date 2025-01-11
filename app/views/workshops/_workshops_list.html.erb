@@ -21,7 +21,7 @@
                   <% else %>
                     <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
                   <% end %>
-                  <p class="card-text m-0 small"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none" %></p>
+                  <p class="card-text m-0 small"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none", data: { turbo_frame: "_top" } %></p>
                 </div>
               </div>
             </div>
