@@ -1,6 +1,6 @@
 <div class="container-fluid mx-0">
   <div class="row">
-    <div class="col-6 d-flex justify-content-center align-items-center" style="background-color: #2836a5; height: 45rem;">
+    <div class="col-6 d-flex justify-content-center align-items-center" style="background-color: #2836a5; height: 25rem;">
       <h1 style="width: 20rem; font-weight: bold; text-align: center; color: white">GET INSPIRED NOW!</h1>
     </div>
     <div class="col-6 d-flex justify-content-center align-items-center" style="background-color: #ff7c00;">
@@ -22,7 +22,48 @@
       </div>
     <% end %>
   </div>
-  <%= turbo_frame_tag :workshops do %>
-    <%= render "workshops/workshops_list", workshops: @workshops %>
+  <% if user_signed_in? %>
+    <%= turbo_frame_tag :workshops do %>
+      <%= render "workshops/workshops_list", workshops: @workshops %>
+    <% end %>
+  <% else %>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12 my-5">
+          <h1 class="fw-bold">People + Places</h1>
+          <p class="fs-4">Create your network, meet People design your furure!</p>
+          <div class="d-none d-lg-flex flex-wrap justify-content-center">
+            <%= image_tag "inga1.jpg", alt: "woman image", class: "img-fluid m-2", style: "width: 13.9vw; height: 35vh; object-fit: cover; object-position: center;", loading: "lazy" %>
+            <%= image_tag "inga2.jpg", alt: "woman image", class: "img-fluid m-2", style: "width: 13.9vw; height: 35vh; object-fit: cover; object-position: 25%;", loading: "lazy" %>
+            <%= image_tag "inga3.jpg", alt: "woman image", class: "img-fluid m-2", style: "width: 13.9vw; height: 35vh; object-fit: cover; object-position: 45%;", loading: "lazy" %>
+            <%= image_tag "inga4.jpg", alt: "woman image", class: "img-fluid m-2", style: "width: 13.9vw; height: 35vh; object-fit: cover; object-position: center;", loading: "lazy" %>
+          </div>
+          <div class="d-flex d-lg-none flex-wrap justify-content-center">
+            <%= image_tag "inga1.jpg", alt: "woman image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "inga2.jpg", alt: "woman image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "inga3.jpg", alt: "woman image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "inga4.jpg", alt: "woman image", class: "img-fluid m-2", loading: "lazy" %>
+          </div>
+        </div>
+        <div class="col-12 my-5">
+          <h1 class="fw-bold">Places + Workshops</h1>
+          <p class="fs-4">Discover workshops and places from anywhere in the world.</p>
+          <div class="d-none d-lg-flex flex-wrap justify-content-center">
+            <%= image_tag "place1.jpg", alt: "place image", class: "img-fluid m-2", style: "width: 11vw; height: 20vh; object-fit: cover; object-position: center;", loading: "lazy" %>
+            <%= image_tag "place2.jpg", alt: "place image", class: "img-fluid m-2", style: "width: 11vw; height: 20vh; object-fit: cover; object-position: 25%;", loading: "lazy" %>
+            <%= image_tag "place3.jpg", alt: "place image", class: "img-fluid m-2", style: "width: 11vw; height: 20vh; object-fit: cover; object-position: 45%;", loading: "lazy" %>
+            <%= image_tag "place4.jpg", alt: "place image", class: "img-fluid m-2", style: "width: 11vw; height: 20vh; object-fit: cover; object-position: center;", loading: "lazy" %>
+            <%= image_tag "place5.jpg", alt: "place image", class: "img-fluid m-2", style: "width: 11vw; height: 20vh; object-fit: cover; object-position: center;", loading: "lazy" %>
+          </div>
+          <div class="d-flex d-lg-none flex-wrap justify-content-center">
+            <%= image_tag "place1.jpg", alt: "place image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "place2.jpg", alt: "place image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "place3.jpg", alt: "place image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "place4.jpg", alt: "place image", class: "img-fluid m-2", loading: "lazy" %>
+            <%= image_tag "place5.jpg", alt: "place image", class: "img-fluid m-2", loading: "lazy" %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
