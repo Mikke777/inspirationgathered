@@ -1,50 +1,40 @@
-<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/_workshops_list.html.erb -->
-<% if user_signed_in? %>
-  <% if workshops.empty? %>
-    <p>No workshops available</p>
-  <% else %>
-    <div class="row">
-      <div class="col-md-8">
-        <div class="row">
-          <% workshops.each do |workshop| %>
-            <div class="col-md-6 mb-4">
-              <div class="card h-100 d-flex flex-column">
-                <% if workshop.photo.attached? %>
-                  <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
-                <% else %>
-                  <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
-                <% end %>
-                <div class="card-body p-2 d-flex flex-column">
-                  <h2 class="card-title h6"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none", data: { turbo_frame: "_top" } %></h2>
-                  <p class="card-text small"><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
-                  <div class="d-flex align-items-center mt-auto">
-                    <% if workshop.user.photo.attached? %>
-                      <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
-                    <% else %>
-                      <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
-                    <% end %>
-                    <p class="card-text m-0 small"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none" %></p>
-                  </div>
+<% if workshops.empty? %>
+  <p>No workshops available</p>
+<% else %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <% workshops.each do |workshop| %>
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 d-flex flex-column">
+              <% if workshop.photo.attached? %>
+                <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+              <% else %>
+                <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+              <% end %>
+              <div class="card-body p-2 d-flex flex-column">
+                <h2 class="card-title h6"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none", data: { turbo_frame: "_top" } %></h2>
+                <p class="card-text small"><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+                <div class="d-flex align-items-center mt-auto">
+                  <% if workshop.user.photo.attached? %>
+                    <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+                  <% else %>
+                    <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+                  <% end %>
+                  <p class="card-text m-0 small"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none" %></p>
                 </div>
               </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
-      <div class="col-md-4 d-none d-md-block">
-        <div class="col-12" style="height: 100vh; position: sticky; top: 0;"
-          data-controller="map"
-          data-map-markers-value="<%= @markers.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
-        </div>
     </div>
-  <% end %>
-<% else %>
-  <div class="container-fluid" style="height: 15rem; display: flex; justify-content: center; align-items: center;">
-    <h1 style="font-weight: bold;">People + Places</h1>
-  </div>
-  <div class="container-fluid" style="height: 15rem; display: flex; justify-content: center; align-items: center;">
-    <h1 style="font-weight: bold;">Places + Workshops</h1>
+    <div class="col-md-4 d-none d-md-block">
+      <div class="col-12" style="height: 100vh; position: sticky; top: 0;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+      </div>
   </div>
 <% end %>
