@@ -15,7 +15,7 @@
           <ul class="list-group">
             <% workshop.bookings.each do |booking| %>
               <li class="list-group-item">
-                <p><strong>Booked by:</strong> <%= booking.user.email %></p>
+                <p><strong>Booked by:</strong> <%= booking.user.name %></p>
                 <% if booking.messages.any? %>
                   <p><strong>Messages:</strong> <%= booking.messages.count %></p>
                   <%= link_to 'View Chat', chat_workshop_booking_path(workshop, booking), class: "btn btn-primary" %>

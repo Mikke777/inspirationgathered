@@ -7,9 +7,10 @@ class Workshop < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   validate :photo_size
   validates :title, presence: true
-  validates :description, presence: true
+  validates :description, presence: true, length: { maximum: 500 }
   validates :address, presence: true
   validates :date, presence: true
+  validates :photo, presence: true
 
 
   include PgSearch::Model
@@ -27,8 +28,8 @@ class Workshop < ApplicationRecord
   private
 
   def photo_size
-    if photo.attached? && photo.blob.byte_size > 10.megabytes
-      errors.add(:photo, "size should be less than 10MB")
+    if photo.attached? && photo.blob.byte_size > 200.kilobytes
+      errors.add(:photo, "size should be less than 200KB")
     end
   end
 end
