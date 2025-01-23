@@ -62,6 +62,11 @@ class WorkshopsController < ApplicationController
     @workshops = current_user.workshops.includes(:bookings)
   end
 
+  def inbox
+    @bookings = current_user.bookings.includes(:workshop)
+    @workshops = current_user.workshops.includes(:bookings)
+  end
+
   private
 
   def set_workshop
