@@ -1,28 +1,66 @@
-<div class="container my-5 p-4" style="background-color: #2836a5; border-radius: 25px;">
+<div class="container my-5 p-4" style="background-color: #2836a5; border-radius: 25px;" data-controller="filter">
   <h1 class="my-5 text-white">My Booked Workshops</h1>
+  <div class="d-flex justify-content-between mb-4">
+    <div class="flex-grow-1 mx-2">
+      <button type="button" class="btn rounded-pill w-100 active" style="background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
+    </div>
+    <div class="flex-grow-1 mx-2">
+      <button type="button" class="btn rounded-pill w-100" style="background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
+    </div>
+  </div>
   <% if @booked_workshops.empty? %>
     <h2 class="text-white mb-5">Hey! you didn´t booked any workshop yet :) You should go on the homepage and search for some workshop :)</h2>
     <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"background-color: #d70c99;" %>
   <% else %>
-    <div class="row">
-      <% @booked_workshops.each do |workshop| %>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 d-flex flex-column" style="border-radius: 1rem; padding: 1rem; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
-            <% if workshop.photo.attached? %>
-              <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid rounded-top-4", style: "height: 15rem; width: 100%; object-fit: cover;" %>
-            <% else %>
-              <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
-            <% end %>
-            <div class="card-body d-flex flex-column">
-              <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), style:"color:black;" %></h2>
-              <p class="card-text"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
-              <div class="mt-auto d-flex justify-content-between">
-                <%= button_to 'Cancel Booking', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger rounded-pill' %>
-                <%= link_to 'Chat with Host', chat_workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), class: "btn btn-primary rounded-pill" %>
+    <div class="row" data-filter-target="upcoming">
+      <% if @upcoming_workshops.empty? %>
+        <h2 class="text-white mb-5">No upcoming workshops here! Nothing to see ;) Cammon go to the homepage and book some new one! Let´s stay inspired :)</h2>
+        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"background-color: #d70c99;" %>
+      <% else %>
+        <% @upcoming_workshops.each do |workshop| %>
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 d-flex flex-column" style="border-radius: 1rem; padding: 1rem; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
+              <% if workshop.photo.attached? %>
+                <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid rounded-top-4", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+              <% else %>
+                <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+              <% end %>
+              <div class="card-body d-flex flex-column">
+                <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), style:"color:black;" %></h2>
+                <p class="card-text"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+                <div class="mt-auto d-flex justify-content-between">
+                  <%= button_to 'Cancel Booking', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger rounded-pill' %>
+                  <%= link_to 'Chat with Host', chat_workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), class: "btn btn-primary rounded-pill" %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row d-none" data-filter-target="past">
+      <% if @past_workshops.empty? %>
+        <h2 class="text-white mb-5">No workshops you booked belong to the past ;) mmm... a solution could be book more workshops? ;)</h2>
+        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"background-color: #d70c99;" %>
+      <% else %>
+        <% @past_workshops.each do |workshop| %>
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 d-flex flex-column" style="border-radius: 1rem; padding: 1rem; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
+              <% if workshop.photo.attached? %>
+                <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid rounded-top-4", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+              <% else %>
+                <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+              <% end %>
+              <div class="card-body d-flex flex-column">
+                <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), style:"color:black;" %></h2>
+                <p class="card-text"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+                <div class="mt-auto d-flex justify-content-between">
+                  <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" disabled>The Workshop is over :(</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>

@@ -56,6 +56,8 @@ class WorkshopsController < ApplicationController
 
   def booked
     @booked_workshops = current_user.booked_workshops
+    @upcoming_workshops = @booked_workshops.where('date >= ?', Date.today.beginning_of_day)
+    @past_workshops = @booked_workshops.where('date < ?', Date.today.beginning_of_day)
   end
 
   def dashboard
