@@ -67,8 +67,8 @@ class WorkshopsController < ApplicationController
   end
 
   def inbox
-    @bookings = current_user.bookings.includes(:workshop)
-    @workshops = current_user.workshops.includes(:bookings)
+    @bookings = current_user.bookings.joins(:workshop).where('workshops.date >= ?', Date.today.beginning_of_day)
+    @workshops = current_user.workshops.includes(:bookings).where('date >= ?', Date.today.beginning_of_day)
   end
 
   private
