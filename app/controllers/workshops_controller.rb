@@ -4,7 +4,7 @@ class WorkshopsController < ApplicationController
   before_action :set_workshop_for_show, only: [:show]
 
   def index
-    @workshops = Workshop.all
+    @workshops = Workshop.where('date >= ?', Date.today.beginning_of_day)
     if params[:query].present?
       @workshops = @workshops.global_search(params[:query])
     end
