@@ -41,14 +41,22 @@
           <%= @workshop.date.strftime("%B %d, %Y %H:%M") %>
         </div>
         <div class="col-12 col-md-auto d-flex flex-column flex-md-row">
-          <% if user_signed_in? && @workshop.user != current_user %>
-            <% if @workshop.booked_users.include?(current_user) %>
-              <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger w-100 mb-2 mb-md-0 me-md-2 rounded-pill' %>
+          <% if @workshop.date < Date.today %>
+            <% if @workshop.user == current_user %>
+              <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" disabled>Workshop in the past, you can't edit or delete</button>
             <% else %>
-              <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn btn-primary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" %>
+              <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" disabled>Workshop in the past, you can't book it</button>
+            <% end %>
+          <% else %>
+            <% if user_signed_in? && @workshop.user != current_user %>
+              <% if @workshop.booked_users.include?(current_user) %>
+                <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger w-100 mb-2 mb-md-0 me-md-2 rounded-pill' %>
+              <% else %>
+                <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn btn-primary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" %>
+              <% end %>
             <% end %>
           <% end %>
-          <% if user_signed_in? && @workshop.user == current_user %>
+          <% if user_signed_in? && @workshop.user == current_user && @workshop.date >= Date.today %>
             <%= link_to 'Edit', edit_workshop_path(@workshop), class: "btn btn-warning w-100 mb-2 mb-md-0 me-md-2 rounded-pill" %>
             <%= link_to 'Destroy', @workshop, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger w-100 rounded-pill" %>
           <% end %>
