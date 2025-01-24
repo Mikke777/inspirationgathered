@@ -62,6 +62,8 @@ class WorkshopsController < ApplicationController
 
   def dashboard
     @workshops = current_user.workshops.includes(:bookings)
+    @upcoming_workshops = @workshops.where('date >= ?', Date.today.beginning_of_day).order(date: :asc)
+    @past_workshops = @workshops.where('date < ?', Date.today.beginning_of_day).order(date: :desc)
   end
 
   def inbox
