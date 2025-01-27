@@ -14,3 +14,22 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+
+@font-face {
+  font-family: 'Lovelo';
+  src: url('/assets/fonts/LoveloBlack.woff2') format('woff2'),
+       url('/assets/fonts/LoveloBlack.woff') format('woff'),
+       url('/assets/fonts/LoveloBlack.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lovelo';
+  src: url('/assets/fonts/LoveloLineBold.woff2') format('woff2'),
+       url('/assets/fonts/LoveloLineBold.woff') format('woff'),
+       url('/assets/fonts/LoveloLineBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}

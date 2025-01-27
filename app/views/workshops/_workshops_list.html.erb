@@ -13,15 +13,15 @@
                 <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
               <% end %>
               <div class="card-body p-2 d-flex flex-column">
-                <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none", data: { turbo_frame: "_top" }, style:"color: black; font-weight: bold; font-size: 2rem;" %></h2>
-                <p class="card-text small"><strong>Date:</strong> <%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+                <h2 class="card-title" style="font-family: 'Lovelo', sans-serif;"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none", data: { turbo_frame: "_top" }, style:"color: black; font-family: 'Lovelo', sans-serif; font-weight: bold; font-size: 2rem;" %></h2>
+                <p class="card-text small" style="font-family: 'Lovelo', sans-serif;"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
                 <div class="d-flex align-items-center mt-auto">
                   <% if workshop.user.photo.attached? %>
                     <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
                   <% else %>
                     <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
                   <% end %>
-                  <p class="card-text m-0 small"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none", data: { turbo_frame: "_top" }, style:"color: black; font-size: 1rem; font-weight: bold;" %></p>
+                  <p class="card-text m-0 small" style="font-family: 'Lovelo', sans-serif;"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none", data: { turbo_frame: "_top" }, style:"color: black; font-size: 1rem; font-weight: bold;" %></p>
                 </div>
               </div>
             </div>

@@ -1,43 +1,43 @@
 <!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/inbox.html.erb -->
 <div class="container my-5" style="background-color: #2836a5; border-radius: 25px; padding:3.5rem;" data-controller="filter">
-  <h1 class="text-white">Inbox</h1>
+  <h1 class="text-white" style="font-family: 'Lovelo', sans-serif;">Inbox</h1>
   <div class="d-flex justify-content-between mb-4">
     <div class="flex-grow-1 mx-2 mb-5">
-      <button type="button" class="btn rounded-pill w-100 active" style="background-color:#d70c99; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="booked" data-filter-target="button">Your Questions</button>
+      <button type="button" class="btn rounded-pill w-100 active" style="font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="booked" data-filter-target="button">Your Questions</button>
     </div>
     <div class="flex-grow-1 mx-2">
-      <button type="button" class="btn rounded-pill w-100" style="background-color:#ff7c00; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="questions" data-filter-target="button">Your Answer</button>
+      <button type="button" class="btn rounded-pill w-100" style="font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="questions" data-filter-target="button">Your Answer</button>
     </div>
   </div>
   <div data-filter-target="booked">
-    <h3 class="text-white">Chats of your booked Workshops</h3>
+    <h3 class="text-white" style="font-family: 'Lovelo', sans-serif;">Chats of your booked Workshops</h3>
     <% if @bookings.empty? %>
-      <p class="text-white">Wow...looks like you never contacted the person that created the Workshop you booked. If you like, you can do it in the section "My Booked Workshops" ;) Look up in the Navbar ;)</p>
+      <p class="text-white" style="font-family: 'Lovelo', sans-serif;">Wow...looks like you never contacted the person that created the Workshop you booked. If you like, you can do it in the section "My Booked Workshops" ;) Look up in the Navbar ;)</p>
     <% else %>
       <ul class="list-group rounded-5">
         <% @bookings.each do |booking| %>
           <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            <%= link_to "#{booking.workshop.user.name} - #{booking.workshop.title}", chat_workshop_booking_path(booking.workshop, booking), style:"color:black; text-decoration: none;" %>
+            <%= link_to "#{booking.workshop.user.name} - #{booking.workshop.title}", chat_workshop_booking_path(booking.workshop, booking), style:"font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" %>
           </li>
         <% end %>
       </ul>
     <% end %>
   </div>
   <div class="d-none" data-filter-target="questions">
-    <h3 class="mt-4 text-white">Answer messages about your Workshop</h3>
+    <h3 class="mt-4 text-white" style="font-family: 'Lovelo', sans-serif;">Answer messages about your Workshop</h3>
     <ul class="list-group rounded-5">
       <% @workshops.each do |workshop| %>
         <% workshop.bookings.each do |booking| %>
           <% if booking.messages.count > 0 %>
             <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-              <%= link_to "#{booking.user.name} - #{workshop.title}", chat_workshop_booking_path(workshop, booking), style:"color:black; text-decoration: none;" %>
+              <%= link_to "#{booking.user.name} - #{workshop.title}", chat_workshop_booking_path(workshop, booking), style:"font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" %>
             </li>
           <% end %>
         <% end %>
       <% end %>
     </ul>
     <% if @workshops.none? { |workshop| workshop.bookings.any? { |booking| booking.messages.count > 0 } } %>
-      <p class="text-white">Seems like nobody wrote you a message about your Workshops :) I am sure you wrote a really good description! I am proud of you! :)</p>
+      <p class="text-white" style="font-family: 'Lovelo', sans-serif;">Seems like nobody wrote you a message about your Workshops :) I am sure you wrote a really good description! I am proud of you! :)</p>
     <% end %>
   </div>
 </div>
