@@ -1,6 +1,6 @@
 <!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/show.html.erb -->
 <div class="container">
-  <div class="row" style="background-color: white; margin-top: 3rem; padding: 2rem; border-radius: 3rem;">
+  <div class="row" style="background-color: #2836a5; margin-top: 3rem; padding: 2rem; border-radius: 3rem;">
     <div class="col-md-3 px-0">
       <div style="width: 100%; height: 100%;"
            data-controller="map"
@@ -27,17 +27,17 @@
         </div>
       </div>
       <div>
-        <h1 style="font-family: 'Lovelo', sans-serif; margin-top: 2rem;"><%= @workshop.title %></h1>
-        <p><%= @workshop.description %></p>
-        <p style="font-family: Lovelo"><%= @workshop.address %></p>
+        <h1 style="margin-top: 2rem; color: white;"><%= @workshop.title %></h1>
+        <p style="color: white;"><%= @workshop.description %></p>
+        <p style="font-family: Lovelo; color: white;"><%= @workshop.address %></p>
       </div>
       <p>
-        <strong style="font-family: Lovelo">Host:</strong>
-        <%= link_to @workshop.user.last_name, user_path(@workshop.user), style:"font-family: Lovelo; color: black;" %>
+        <strong style="font-family: Lovelo; color: white;">Host:</strong>
+        <%= link_to @workshop.user.last_name, user_path(@workshop.user), style:"font-family: Lovelo; color: white;" %>
       </p>
       <div class="row d-flex justify-content-between align-items-center mb-3">
         <div class="col-12 col-md-auto">
-          <p style="font-family: Lovelo"><%= @workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+          <p style="font-family: Lovelo; color: white;"><%= @workshop.date.strftime("%B %d, %Y %H:%M") %></p>
         </div>
         <div class="col-12 col-md-auto d-flex flex-column flex-md-row">
           <% if @workshop.date < Date.today %>
