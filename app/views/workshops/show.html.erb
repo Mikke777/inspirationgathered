@@ -51,7 +51,7 @@
               <% if @workshop.booked_users.include?(current_user) %>
                 <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger w-100 mb-2 mb-md-0 me-md-2 rounded-pill', style:"font-family: Lovelo" %>
               <% else %>
-                <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn btn-primary w-100 mb-2 mb-md-0 me-md-2 rounded-pill", style:"font-family: Lovelo" %>
+                <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn btn-primary w-100 mb-2 mb-md-0 me-md-2 rounded-pill", style:"font-family: Lovelo; background-color: #ff7c00; border: none;" %>
               <% end %>
             <% end %>
           <% end %>
