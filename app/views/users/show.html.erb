@@ -15,10 +15,10 @@
     <div class="row pt-3">
       <div class="col-12">
         <div class="d-flex justify-content-center">
-          <a href="#myStory" class="me-3 text-black active-link" data-action="click->toggle#changeTitle" data-title="My Story" data-toggle-target="storyLink">
+          <a href="#myStory" class="me-3 text-black active-link" style="font-family: Lovelo;" data-action="click->toggle#changeTitle" data-title="My Story" data-toggle-target="storyLink">
             My Story
           </a>
-          <a href="#myWorkshops" class="me-3 text-black" data-action="click->toggle#changeTitle" data-title="My Workshops" data-toggle-target="workshopsLink">
+          <a href="#myWorkshops" class="me-3 text-black" style="font-family: Lovelo;" data-action="click->toggle#changeTitle" data-title="My Workshops" data-toggle-target="workshopsLink">
             My Workshops
           </a>
         </div>
@@ -39,7 +39,7 @@
             <ul class="list-unstyled">
               <% @user.workshops.each do |workshop| %>
                 <li>
-                  <%= link_to workshop.title, workshop_path(workshop), class: "workshop-link-profile" %>
+                  <%= link_to workshop.title, workshop_path(workshop), class: "workshop-link-profile", style:"font-family: Lovelo;" %>
                 </li>
               <% end %>
             </ul>
@@ -49,7 +49,7 @@
     </div>
     <% if current_user == @user %>
       <div class="d-flex justify-content-end mt-3">
-        <%= link_to "Edit", edit_user_registration_path, class: "btn btn-warning align-self-end px-5 mx-5" %>
+        <%= link_to "Edit", edit_user_registration_path, class: "btn btn-warning align-self-end px-5 mx-5", style:"font-family: Lovelo;" %>
       </div>
     <% end %>
   </div>
