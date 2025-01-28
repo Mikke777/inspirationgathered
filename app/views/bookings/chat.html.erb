@@ -14,7 +14,7 @@
         <%= simple_form_for [@booking, Message.new], url: workshop_booking_messages_path(@booking.workshop, @booking), html: { class: "d-flex align-items-center" }, data: { turbo_stream: true, controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
           <% other_user = current_user == @booking.workshop.user ? @booking.user : @booking.workshop.user %>
           <%= f.input :content, label: false, placeholder: "Message #{other_user.name}", wrapper_html: { class: "flex-grow-1 mb-0" }, input_html: { class: "form-control" } %>
-          <%= f.submit "Send", class: "btn btn-primary mb-3 py-3", style:"background-color:#d70c99; border: none;" %>
+          <%= f.submit "Send", class: "btn btn-primary mb-3 py-3", style:"font-family: Lovelo; background-color:#d70c99; border: none;" %>
         <% end %>
       </div>
     </div>

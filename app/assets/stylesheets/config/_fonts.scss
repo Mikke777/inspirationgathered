@@ -2,34 +2,19 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+
 
 // To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
-
-
 @font-face {
-  font-family: 'Lovelo';
-  src: url('/assets/fonts/LoveloBlack.woff2') format('woff2'),
-       url('/assets/fonts/LoveloBlack.woff') format('woff'),
-       url('/assets/fonts/LoveloBlack.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: "Lovelo";
+  src: font-url('Lovelo/Lovelo-Black.eot');
+  src: font-url('Lovelo/Lovelo-Black.eot?#iefix') format('embedded-opentype'),
+       font-url('Lovelo/Lovelo-Black.woff') format('woff'),
+       font-url('Lovelo/Lovelo-Black.ttf') format('truetype')
 }
 
-@font-face {
-  font-family: 'Lovelo';
-  src: url('/assets/fonts/LoveloLineBold.woff2') format('woff2'),
-       url('/assets/fonts/LoveloLineBold.woff') format('woff'),
-       url('/assets/fonts/LoveloLineBold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
+
+$my-font: "Lovelo";
+
+$headers-font: $my-font;
+$body-font: "Work Sans", "Helvetica", "sans-serif";

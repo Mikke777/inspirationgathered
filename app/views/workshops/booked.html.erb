@@ -9,13 +9,13 @@
     </div>
   </div>
   <% if @booked_workshops.empty? %>
-    <h2 class="text-white mb-5" style="font-family: 'Lovelo', sans-serif">Hey! you didn´t booked any workshop yet :) You should go on the homepage and search for some workshop :)</h2>
-    <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"background-color: #d70c99;" %>
+    <h2 class="text-white mb-5">Hey! you didn´t booked any workshop yet! You should go on the homepage and search for some workshop <i class="fa-solid fa-face-laugh-wink"></i></h2>
+    <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
   <% else %>
     <div class="row" data-filter-target="upcoming">
       <% if @upcoming_workshops.empty? %>
-        <h2 class="text-white mb-5" style="font-family: 'Lovelo', sans-serif;">No upcoming workshops here! Nothing to see ;) Cammon go to the homepage and book some new one! Let´s stay inspired :)</h2>
-        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"background-color: #d70c99;" %>
+        <h2 class="text-white mb-5" style="font-family: 'Lovelo', sans-serif;">No upcoming workshops here! Nothing to see <i class="fa-regular fa-face-grin-tongue-wink"></i> Cammon go to the homepage and book some new one! Let´s stay inspired <i class="fa-solid fa-face-laugh-wink"></i></h2>
+        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
       <% else %>
         <% @upcoming_workshops.each do |workshop| %>
           <div class="col-md-6 mb-4">
@@ -27,10 +27,10 @@
               <% end %>
               <div class="card-body d-flex flex-column">
                 <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), style:"color:black;" %></h2>
-                <p class="card-text"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
+                <p class="card-text" style="font-family: Lovelo"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
                 <div class="mt-auto d-flex justify-content-between">
-                  <%= button_to 'Cancel Booking', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger rounded-pill' %>
-                  <%= link_to 'Chat with Host', chat_workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), class: "btn btn-primary rounded-pill" %>
+                  <%= button_to 'Cancel Booking', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger rounded-pill', style:"font-family: Lovelo" %>
+                  <%= link_to 'Chat with Host', chat_workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), class: "btn btn-primary rounded-pill", style:"font-family: Lovelo" %>
                 </div>
               </div>
             </div>
@@ -40,8 +40,8 @@
     </div>
     <div class="row d-none" data-filter-target="past">
       <% if @past_workshops.empty? %>
-        <h2 class="text-white mb-5">No workshops you booked belong to the past ;) mmm... a solution could be book more workshops? ;)</h2>
-        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"background-color: #d70c99;" %>
+        <h2 class="text-white mb-5">No workshops you booked belong to the past...mmm... a solution could be book more workshops? <i class="fa-regular fa-face-grin-tongue-wink"></i></h2>
+        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
       <% else %>
         <% @past_workshops.each do |workshop| %>
           <div class="col-md-6 mb-4">
@@ -55,7 +55,7 @@
                 <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), style:"color:black; font-family: 'Lovelo', sans-serif;" %></h2>
                 <p class="card-text" style="font-family: 'Lovelo', sans-serif;"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
                 <div class="mt-auto d-flex justify-content-between">
-                  <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" disabled>The Workshop is over :(</button>
+                  <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" style="font-family: Lovelo" disabled>The Workshop is over <i class="fa-solid fa-ghost"></i></button>
                 </div>
               </div>
             </div>
