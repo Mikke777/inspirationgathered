@@ -19,7 +19,8 @@ class BookingsController < ApplicationController
   end
 
   def chat
-    @messages = @booking.messages
+    @messages = @booking.messages.order(created_at: :asc)
+    @messages.where.not(user: current_user).update_all(read: true)
     @other_user = @booking.user == current_user ? @booking.workshop.user : @booking.user
   end
 

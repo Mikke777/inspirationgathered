@@ -17,7 +17,13 @@
       <ul class="list-group rounded-5">
         <% @bookings.each do |booking| %>
           <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            <%= link_to "#{booking.workshop.user.name} - #{booking.workshop.title}", chat_workshop_booking_path(booking.workshop, booking), style:"font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" %>
+            <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>
+            <%= link_to chat_workshop_booking_path(booking.workshop, booking), style: "font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" do %>
+              <%= "#{booking.workshop.user.name} - #{booking.workshop.title}" %>
+              <% if unread_messages_count > 0 %>
+                <span class="badge bg-danger text-white" style="font-size: 1rem"><%= unread_messages_count %> unread</span>
+              <% end %>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -29,8 +35,18 @@
       <% @workshops.each do |workshop| %>
         <% workshop.bookings.each do |booking| %>
           <% if booking.messages.count > 0 %>
-            <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-              <%= link_to "#{booking.user.name} - #{workshop.title}", chat_workshop_booking_path(workshop, booking), style:"font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" %>
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>
+                  <%= link_to chat_workshop_booking_path(booking.workshop, booking), style: "font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" do %>
+                    <%= "#{booking.workshop.user.name} - #{booking.workshop.title}" %>
+                    <% if unread_messages_count > 0 %>
+                      <span class="badge bg-danger text-white" style="font-size: 1rem"><%= unread_messages_count %> unread</span>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
             </li>
           <% end %>
         <% end %>

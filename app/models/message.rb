@@ -5,6 +5,8 @@ class Message < ApplicationRecord
   validates :content, presence: true
   after_create_commit :broadcast_message
 
+  scope :unread, -> { where(read: false) }
+
   private
 
   def broadcast_message

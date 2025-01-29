@@ -15,12 +15,12 @@
     <div class="row" data-filter-target="upcoming">
       <% if @upcoming_workshops.empty? %>
         <h2 class="text-white mb-5">No upcoming workshops. If you want create some!!</h2>
-            <%= link_to "Create a new workshop", new_workshop_path, style: "font-family: Lovelo; color: white;" %>
+        <%= link_to "Create a new workshop", new_workshop_path, style: "font-family: Lovelo; color: white;" %>
       <% else %>
         <% @upcoming_workshops.each do |workshop| %>
           <div class="card workshop-dashboard-card mb-4 p-3" style="border-radius: 15px;">
             <div class="row">
-              <div class="col-12 col-md-2 d-flex align-items-center justify-content-center mb-3 mb-md-0" style="border-right: solid black;" >
+              <div class="col-12 col-md-2 d-flex align-items-center justify-content-center mb-3 mb-md-0" style="border-right: solid black;">
                 <div class="bg-light p-3" style="border-radius: 10px;">
                   <p class="font-weight-bold mb-0 fs-4"><%= workshop.date.strftime("%B") %></p>
                   <p class="text-center mb-0 fs-3" style="border-top: solid black;"><%= workshop.date.strftime("%d") %></p>
@@ -43,14 +43,17 @@
                       <li style="list-style: none;">
                         <div class="d-flex justify-content-between">
                           <div>
-                            <p><strong>Booked by:</strong> <%= link_to booking.user.name, user_path(booking.user), style:"font-family: Lovelo; color: #ff7c00;"  %></p>
+                            <p><strong>Booked by:</strong> <%= link_to booking.user.name, user_path(booking.user), style:"font-family: Lovelo; color: #ff7c00;" %></p>
                           </div>
                           <div>
-                            <% if booking.messages.any? %>
-                              <p><strong><i class="fa-solid fa-comment-sms"></i></strong> <%= booking.messages.count %></p>
+                            <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>
+                            <% total_messages_count = booking.messages.count %>
+                            <% if unread_messages_count > 0 %>
+                              <p><strong><i class="fa-solid fa-comment-sms"></i></strong> <span class="badge bg-danger text-white" style="font-size: 1rem"><%= unread_messages_count %> unread</span></p>                            <% else %>
+                              <p class="text-muted">No unread messages.</p>
+                            <% end %>
+                            <% if total_messages_count > 0 %>
                               <%= link_to 'View Chat', chat_workshop_booking_path(workshop, booking), style: "font-family: Lovelo; color: black;" %>
-                            <% else %>
-                              <p class="text-muted">No messages yet.</p>
                             <% end %>
                           </div>
                         </div>
@@ -66,7 +69,7 @@
     </div>
     <div class="row d-none" data-filter-target="past">
       <% if @past_workshops.empty? %>
-        <h2 class="text-white mb-5">No past workshops.</h2>
+        <h2 class="text-white mb-5"><i class="fa-solid fa-ghost"></i> <i class="fa-solid fa-ghost"></i> No past workshops. Nothing to see here! All your past Workshop are going to be deposited in this section <i class="fa-solid fa-ghost"></i> <i class="fa-solid fa-ghost"></i></h2>
       <% else %>
         <% @past_workshops.each do |workshop| %>
           <div class="card mb-4 p-3 workshop-dashboard-card" style="border-radius: 15px;">
@@ -93,7 +96,7 @@
                       <li style="list-style: none;">
                         <div class="d-flex justify-content-between">
                           <div>
-                            <p><strong>Booked by:</strong> <%= link_to booking.user.name, user_path(booking.user), style:"font-family: Lovelo; color: #ff7c00;"  %></p>
+                            <p><strong>Booked by:</strong> <%= link_to booking.user.name, user_path(booking.user), style:"font-family: Lovelo; color: #ff7c00;" %></p>
                           </div>
                         </div>
                       </li>
