@@ -23,6 +23,40 @@
           <li class="nav-item">
             <%= link_to "Inbox", inbox_workshops_path, class: "nav-link" %>
           </li>
+          <li class="nav-item dropdown" aria-labelledby="notificationsDropdown">
+            <a href="#" class="nav-link d-flex align-items-center justify-content-center h-100" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% unread_booking_messages_count = current_user.bookings.joins(:messages).where(messages: { read: false }).where.not(messages: { user_id: current_user.id }).count %>
+              <% unread_workshop_messages_count = Message.joins(booking: :workshop).where(workshops: { user_id: current_user.id }).where(read: false).where.not(user_id: current_user.id).count %>
+              <% unread_messages_count = unread_booking_messages_count + unread_workshop_messages_count %>
+              <i class="fa-solid fa-bell <%= 'text-danger' if unread_messages_count > 0 %>"></i>
+              <% if unread_messages_count > 0 %>
+                <span class="badge bg-danger text-white"><%= unread_messages_count %></span>
+              <% end %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <% unread_bookings = current_user.bookings.joins(:messages).where(messages: { read: false }).where.not(messages: { user_id: current_user.id }) %>
+              <% unread_workshops = current_user.workshops.joins(bookings: :messages).where(messages: { read: false }).where.not(messages: { user_id: current_user.id }) %>
+              <% if unread_bookings.any? || unread_workshops.any? %>
+                <% unread_bookings.each do |booking| %>
+                  <%= link_to chat_workshop_booking_path(booking.workshop, booking), class: "dropdown-item" do %>
+                    <%= "#{booking.workshop.title} - #{booking.messages.where(read: false).where.not(user_id: current_user.id).count} unread messages" %>
+                  <% end %>
+                <% end %>
+                <% unread_workshops.each do |workshop| %>
+                  <% workshop.bookings.each do |booking| %>
+                    <% unread_messages_count = booking.messages.where(read: false).where.not(user_id: current_user.id).count %>
+                    <% if unread_messages_count > 0 %>
+                      <%= link_to chat_workshop_booking_path(workshop, booking), class: "dropdown-item" do %>
+                        <%= "#{workshop.title} - #{unread_messages_count} unread messages" %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <span class="dropdown-item">No new messages</span>
+              <% end %>
+            </div>
+          </li>
           <li class="nav-item d-sm-none">
             <%= link_to 'New Workshop', new_workshop_path, class:"nav-link" %>
           </li>
