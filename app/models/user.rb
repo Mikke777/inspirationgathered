@@ -14,7 +14,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :description, presence: true, length: { maximum: 100 }
-  validates :password, presence: true
   validates :photo, presence: true
   validate :photo_size
 

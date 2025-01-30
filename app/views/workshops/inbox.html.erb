@@ -1,4 +1,3 @@
-<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/inbox.html.erb -->
 <div class="container my-5" style="background-color: #2836a5; border-radius: 25px; padding:3.5rem;" data-controller="filter">
   <h1 class="text-white" style="font-family: 'Lovelo', sans-serif;">Inbox</h1>
   <div class="d-flex justify-content-between mb-4">
@@ -35,12 +34,12 @@
       <% @workshops.each do |workshop| %>
         <% workshop.bookings.each do |booking| %>
           <% if booking.messages.count > 0 %>
-            <li class="list-group-item">
+            <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>
                   <%= link_to chat_workshop_booking_path(booking.workshop, booking), style: "font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" do %>
-                    <%= "#{booking.workshop.user.name} - #{booking.workshop.title}" %>
+                    <%= "#{booking.user.name} - #{booking.workshop.title}" %>
                     <% if unread_messages_count > 0 %>
                       <span class="badge bg-danger text-white" style="font-size: 1rem"><%= unread_messages_count %> unread</span>
                     <% end %>
