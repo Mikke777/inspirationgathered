@@ -8,7 +8,7 @@
           <div class="col-md-6 mb-4">
             <div class="card h-100 d-flex flex-column" style="border-radius: 1rem; padding: 0; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
               <% if workshop.photo.attached? %>
-                <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+                <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem;" %>
               <% else %>
                 <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
               <% end %>
@@ -17,9 +17,9 @@
                 <p class="card-text small" style="font-family: 'Lovelo', sans-serif;"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
                 <div class="d-flex align-items-center mt-auto">
                   <% if workshop.user.photo.attached? %>
-                    <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+                    <%= cl_image_tag workshop.user.photo.key, class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px; border-radius: 50px;" %>
                   <% else %>
-                    <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px;" %>
+                    <%= image_tag "noimageuser.jpg", class: "avatar", style: "width: 2rem; height: 2rem; margin-right: 10px; border-radius: 50px;" %>
                   <% end %>
                   <p class="card-text m-0 small" style="font-family: 'Lovelo', sans-serif;"><%= link_to workshop.user.name, user_path(workshop.user), class: "text-decoration-none", data: { turbo_frame: "_top" }, style:"color: black; font-size: 1rem; font-weight: bold;" %></p>
                 </div>
