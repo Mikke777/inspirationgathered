@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
     else
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { booking: @booking, message: @message })
+          render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form_m", locals: { booking: @booking, message: @message })
         end
         format.html { render "bookings/chat", status: :unprocessable_entity }
       end
