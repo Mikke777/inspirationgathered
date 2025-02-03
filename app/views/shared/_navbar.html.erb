@@ -95,10 +95,7 @@
             <%= link_to 'New Workshop', new_workshop_path, class:"nav-link" %>
           </li>
           <li class="nav-item d-sm-none">
-            <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item d-sm-none">
-            <%= link_to "View profile", user_path(current_user), class: "nav-link" %>
+            <%= link_to "My Profile", user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item d-sm-none">
             <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete}, class: "nav-link" %>
@@ -113,8 +110,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to 'New Workshop', new_workshop_path, class:"dropdown-item" %>
-              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "View profile", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
