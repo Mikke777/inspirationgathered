@@ -35,6 +35,7 @@
           <%= f.input :password,
                       label: "Change password",
                       hint: "leave it blank if you don't want to change it",
+                      hint_html: { style: "color: white;" },
                       label_html: { style: "color: white;" },
                       required: false,
                       input_html: { autocomplete: "new-password" } %>
@@ -43,22 +44,21 @@
                       required: false,
                       input_html: { autocomplete: "new-password" } %>
           <%= f.input :current_password,
-                      hint: "we need your current password to confirm your changes",
+                      hint: "type in password to confirm changes",
+                      hint_html: { style: "color: white;" },
                       label_html: { style: "color: white;" },
                       required: true,
                       input_html: { autocomplete: "current-password" } %>
         </div>
 
         <div class="form-actions mb-5">
-          <%= f.button :submit, "Update", class:"btn btn-primary", style:"font-family: Lovelo;" %>
+          <%= f.button :submit, "Update", class:"btn", style:"background-color: #ff7c00; color: white;" %>
         </div>
       <% end %>
 
-      <h3>Cancel my account</h3>
-
       <div class="d-flex justify-content-between">
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: "Are you sure?", turbo_frame: '_top' }, method: :delete, class:"btn btn-danger", style:"font-family: Lovelo;" %>
-        <%= link_to "Back", :back, class:"btn btn-primary", style:"font-family: Lovelo;" %>
+        <%= button_to "Delete my account", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: "Are you sure?", turbo_frame: '_top' }, method: :delete, class:"btn", style:"background-color: #d70c99; color: white;" %>
+        <%= link_to "cancel", :back, class:"btn", style:"background-color: #d70c99; color: white;" %>
       </div>
     </div>
   </div>
