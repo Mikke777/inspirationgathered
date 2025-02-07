@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 mx-auto my-5" style="background-color: white; padding: 20px; border-radius: 2rem;">
-      <h2>Sign up</h2>
+    <div class="col-md-6 mx-auto my-5" style="background-color: #2836a5; padding: 20px;">
+      <h2 style="color: white;">Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
@@ -9,29 +9,36 @@
       <div class="form-inputs">
       <%= f.input :email,
                 required: true,
+                label_html: { style: "color: white;" },
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
       <%= f.input :name,
                 required: true,
+                label_html: { style: "color: white;" },
                 autofocus: true,
                 input_html: { autocomplete: "name" }%>
       <%= f.input :last_name,
                 required: true,
+                label_html: { style: "color: white;" },
                 autofocus: true,
                 input_html: { autocomplete: "last_name" }%>
       <%= f.input :description,
                 as: :text,
+                label_html: { style: "color: white;" },
                 input_html: { rows: 5 },
                 required: true%>
       <%= f.input :photo,
                 as: :file,
+                label_html: { style: "color: white;" },
                 required: true %>
       <%= f.input :password,
                 required: true,
+                label_html: { style: "color: white;" },
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
       <%= f.input :password_confirmation,
                 required: true,
+                label_html: { style: "color: white;" },
                 input_html: { autocomplete: "new-password" } %>
       </div>
       <div class="form-actions">
