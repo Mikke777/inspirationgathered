@@ -35,6 +35,7 @@
                 required: true,
                 label_html: { style: "color: white;" },
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                hint_html: { style: "color: white;" },
                 input_html: { autocomplete: "new-password" } %>
       <%= f.input :password_confirmation,
                 required: true,

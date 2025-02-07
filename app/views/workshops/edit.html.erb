@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 mx-auto my-3" style="background-color: #2836a5; padding: 2rem;">
-      <h1>Edit Workshop</h1>
+      <h1 style="color: white;">Edit Workshop</h1>
       <%= simple_form_for(@workshop, html: { multipart: true }) do |f| %>
         <%= f.error_notification %>
 
@@ -9,7 +9,7 @@
           <%= f.input :title, label_html: { style: "color: white;" }, required: true %>
           <%= f.input :description, label_html: { style: "color: white;" }, as: :text, required: true %>
           <%= f.input :photo, label_html: { style: "color: white;" }, as: :file, required: false %>
-          <%= f.input :date, label_html: { style: "color: white;" }, as: :datetime, required: true %>
+          <%= f.input :date, label_html: { style: "color: white;" }, wrapper_html: {style: "color: white"}, as: :datetime, required: true %>
           <%= f.input :address, label_html: { style: "color: white;" },
                       input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
                       wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
@@ -17,8 +17,8 @@
         </div>
 
         <div class="form-actions d-flex justify-content-between">
-          <%= f.button :submit, class:"btn btn-warning mb-2 mb-md-0 me-md-2 rounded-pill" %>
-          <%= link_to 'Back', workshops_path, class:"btn btn-primary mb-2 mb-md-0 me-md-2 rounded-pill", style:"background-color: black; border: none;" %>
+          <%= f.button :submit, class:"btn mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #ff7c00; border: none;"%>
+          <%= link_to 'Back', workshops_path, class:"btn mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #d70c99; border: none;" %>
         </div>
       <% end %>
     </div>
