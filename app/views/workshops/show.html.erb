@@ -1,6 +1,5 @@
-<!-- filepath: /home/mic/code/Mikke777/inspirationgathered/app/views/workshops/show.html.erb -->
 <div class="container">
-  <div class="row" style="background-color: #2836a5; margin-top: 3rem; padding: 2rem; border-radius: 3rem;">
+  <div class="row" style="background-color: #2836a5; margin-top: 3rem; padding: 2rem;">
     <div class="col-md-3 px-0">
       <div style="width: 100%; height: 100%;"
            data-controller="map"
@@ -49,15 +48,15 @@
           <% else %>
             <% if user_signed_in? && @workshop.user != current_user %>
               <% if @workshop.booked_users.include?(current_user) %>
-                <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger w-100 mb-2 mb-md-0 me-md-2 rounded-pill', style:"font-family: Lovelo" %>
+                <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, @workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn w-100 mb-2 mb-md-0 me-md-2', style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
               <% else %>
-                <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn btn-primary w-100 mb-2 mb-md-0 me-md-2 rounded-pill", style:"font-family: Lovelo; background-color: #ff7c00; border: none;" %>
+                <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn w-100 mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
               <% end %>
             <% end %>
           <% end %>
           <% if user_signed_in? && @workshop.user == current_user && @workshop.date >= Date.today %>
-            <%= link_to 'Edit', edit_workshop_path(@workshop), class: "btn btn-warning w-100 mb-2 mb-md-0 me-md-2 rounded-pill", style:"font-family: Lovelo" %>
-            <%= link_to 'Destroy', @workshop, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger w-100 rounded-pill", style:"font-family: Lovelo" %>
+            <%= link_to 'Edit', edit_workshop_path(@workshop), class: "btn w-100 mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
+            <%= link_to 'Delete', @workshop, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn w-100", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
           <% end %>
         </div>
       </div>
