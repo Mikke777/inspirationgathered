@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :description, presence: true, length: { maximum: 100 }
+  validates :description, presence: true, length: { maximum: 500 }
   validates :photo, presence: true
   validate :photo_size
 
