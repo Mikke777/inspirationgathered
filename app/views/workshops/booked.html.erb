@@ -1,24 +1,24 @@
-<div class="container my-5 p-4" style="background-color: #2836a5;" data-controller="filter">
+<div class="container my-5 p-5" style="background-color: #2836a5;" data-controller="filter">
   <h1 class="my-5 text-white" style="font-family: 'Lovelo', sans-serif;">Get Inspired!</h1>
-  <div class="d-flex justify-content-between mb-4">
-    <div class="flex-grow-1 mx-2">
-      <button type="button" class="btn w-100 active" style="border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
+  <div class="d-flex justify-content-around mb-5 mx-0">
+    <div>
+      <button type="button" class="btn active" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
     </div>
-    <div class="flex-grow-1 mx-2">
-      <button type="button" class="btn w-100" style="border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
+    <div>
+      <button type="button" class="btn" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
     </div>
   </div>
   <% if @booked_workshops.empty? %>
     <h2 class="text-white mb-5">Hey! you didn´t booked any workshop yet! You should go on the homepage and search for some workshop <i class="fa-solid fa-face-laugh-wink"></i></h2>
     <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
   <% else %>
-    <div class="row" data-filter-target="upcoming">
+    <div class="row mx-0" data-filter-target="upcoming">
       <% if @upcoming_workshops.empty? %>
         <h2 class="text-white mb-5" style="font-family: 'Lovelo', sans-serif;">No upcoming workshops here! Nothing to see <i class="fa-regular fa-face-grin-tongue-wink"></i> Cammon go to the homepage and book some new one! Let´s stay inspired <i class="fa-solid fa-face-laugh-wink"></i></h2>
         <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
       <% else %>
         <% @upcoming_workshops.each do |workshop| %>
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-4 p-3">
             <div class="card h-100 d-flex flex-column" style="border-radius: 0px; padding: 1rem; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
               <% if workshop.photo.attached? %>
                 <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>

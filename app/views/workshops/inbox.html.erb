@@ -1,11 +1,11 @@
-<div class="container my-5" style="background-color: #2836a5; border-radius: 25px; padding:3.5rem;" data-controller="filter">
-  <h1 class="text-white" style="font-family: 'Lovelo', sans-serif;">Inbox</h1>
-  <div class="d-flex justify-content-between mb-4">
-    <div class="flex-grow-1 mx-2 mb-5">
-      <button type="button" class="btn rounded-pill w-100 active" style="font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="booked" data-filter-target="button">Your Questions</button>
+<div class="container my-5 p-5" style="background-color: #2836a5; border-radius: 0px; padding:3.5rem;" data-controller="filter">
+  <h1 class="my-5 text-white" style="font-family: 'Lovelo', sans-serif;">Inbox</h1>
+  <div class="d-flex justify-content-around mb-5">
+    <div>
+      <button type="button" class="btn active" style=" width: 0.5rem; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="booked" data-filter-target="button">Your Questions</button>
     </div>
-    <div class="flex-grow-1 mx-2">
-      <button type="button" class="btn rounded-pill w-100" style="font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="questions" data-filter-target="button">Your Answer</button>
+    <div>
+      <button type="button" class="btn" style=" width: 0.5rem; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white; font-size:1rem;" data-action="filter#filter" data-filter="questions" data-filter-target="button">Your Answer</button>
     </div>
   </div>
   <div data-filter-target="booked">
@@ -13,9 +13,9 @@
     <% if @bookings.empty? %>
       <p class="text-white" style="font-family: 'Lovelo', sans-serif;">Wow...looks like you never contacted the person that created the Workshop you booked. If you like, you can do it in the section "My Booked Workshops" ;) Look up in the Navbar ;)</p>
     <% else %>
-      <ul class="list-group rounded-5">
+      <ul class="list-group" style="border-radius: 0px;">
         <% @bookings.each do |booking| %>
-          <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <li class="list-group-item mb-2" style="border-radius: 0px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>
             <%= link_to chat_workshop_booking_path(booking.workshop, booking), style: "font-family: 'Lovelo', sans-serif; color:black; text-decoration: none;" do %>
               <%= "#{booking.workshop.user.name} - #{booking.workshop.title}" %>
@@ -30,11 +30,11 @@
   </div>
   <div class="d-none" data-filter-target="questions">
     <h3 class="mt-4 text-white" style="font-family: 'Lovelo', sans-serif;">Answer messages about your Workshop</h3>
-    <ul class="list-group rounded-5">
+    <ul class="list-group">
       <% @workshops.each do |workshop| %>
         <% workshop.bookings.each do |booking| %>
           <% if booking.messages.count > 0 %>
-            <li class="list-group-item rounded-5 mb-2" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <li class="list-group-item mb-2" style="border-radius: 0px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>

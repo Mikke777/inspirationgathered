@@ -1,11 +1,11 @@
 <div class="container my-5 p-5" style="background-color: #2836a5;" data-controller="filter">
-  <h1 class="mb-5 text-white" style="font-family: 'Lovelo', sans-serif;">Inspire others!</h1>
-  <div class="d-flex justify-content-between mb-4">
-    <div class="flex-grow-1 mx-2">
-      <button type="button" class="btn w-100 active" style="border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
+  <h1 class="my-5 text-white" style="font-family: 'Lovelo', sans-serif;">Inspire others!</h1>
+  <div class="d-flex justify-content-around mb-5">
+    <div>
+      <button type="button" class="btn active" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
     </div>
-    <div class="flex-grow-1 mx-2">
-      <button type="button" class="btn w-100" style="border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
+    <div>
+      <button type="button" class="btn" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
     </div>
   </div>
   <% if current_user.workshops.empty? %>
