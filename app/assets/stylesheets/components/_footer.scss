@@ -11,13 +11,13 @@
 
 @media (max-width: 576px) {
   .footer {
-    height: 33rem;
+    height: auto;
     flex-direction: column;
     align-items: center;
   }
 
   .footer-links {
-  flex-direction: column;
+  display: flex;
   align-items: center;
   }
 
