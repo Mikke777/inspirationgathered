@@ -1,0 +1,45 @@
+.magicb {
+  font-size: 1rem;
+  width: 25vw;
+  font-family: 'Lovelo';
+  background-color:#d70c99;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.magicb2 {
+  font-size: 1rem;
+  width: 25vw;
+  font-family: 'Lovelo';
+  background-color:#ff7c00;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .magicb, .magicb2 {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .magicb {
+    border-right: 1px solid black;
+  }
+
+  .prova {
+    height: 100%;
+    border-right: 1px solid black;
+  }
+}

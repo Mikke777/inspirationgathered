@@ -2,10 +2,10 @@
   <h1 class="my-5 text-white" style="font-family: 'Lovelo', sans-serif;">Inspire others!</h1>
   <div class="d-flex justify-content-around mb-5">
     <div>
-      <button type="button" class="btn active" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
+      <button type="button" class="active magicb" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
     </div>
     <div>
-      <button type="button" class="btn" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
+      <button type="button" class="magicb2" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
     </div>
   </div>
   <% if current_user.workshops.empty? %>
@@ -18,7 +18,7 @@
         <%= link_to "Create a new workshop", new_workshop_path, style: "font-family: Lovelo; color: white;" %>
       <% else %>
         <% @upcoming_workshops.each do |workshop| %>
-          <div class="card workshop-dashboard-card mb-4 p-3" style="border-radius: 0px;">
+          <div class="card workshop-dashboard-card mb-4 p-3">
             <div class="row">
               <div class="col-12 col-md-2 d-flex align-items-center justify-content-center mb-3 mb-md-0" style="border-right: solid black;">
                 <div class="bg-light p-3" style="border-radius: 10px;">
@@ -72,7 +72,7 @@
         <h2 class="text-white mb-5">No past workshops. Nothing to see here! All your past Workshop are going to be deposited in this section</h2>
       <% else %>
         <% @past_workshops.each do |workshop| %>
-          <div class="card mb-4 p-3 workshop-dashboard-card" style="border-radius: 0px;">
+          <div class="card mb-4 p-3 workshop-dashboard-card">
             <div class="row">
               <div class="col-12 col-md-2 d-flex align-items-center justify-content-center mb-3 mb-md-0" style="border-right: solid black;">
                 <div class="bg-light p-3" style="border-radius: 10px;">

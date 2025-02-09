@@ -2,10 +2,10 @@
   <h1 class="my-5 text-white" style="font-family: 'Lovelo', sans-serif;">Get Inspired!</h1>
   <div class="d-flex justify-content-around mb-5 mx-0">
     <div>
-      <button type="button" class="btn active" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#d70c99; border: none; color: white;" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
+      <button type="button" class="active magicb" data-action="filter#filter" data-filter="upcoming" data-filter-target="button">Upcoming Workshops</button>
     </div>
     <div>
-      <button type="button" class="btn" style="font-size: 0.5rem; width: 25vw; border-radius: 0px; font-family: 'Lovelo', sans-serif; background-color:#ff7c00; border: none; color: white;" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
+      <button type="button" class="magicb2" data-action="filter#filter" data-filter="past" data-filter-target="button">Past Workshops</button>
     </div>
   </div>
   <% if @booked_workshops.empty? %>
@@ -29,7 +29,7 @@
                 <h2 class="card-title"><%= link_to workshop.title, workshop_path(workshop), style:"color:black; text-decoration: none;" %></h2>
                 <p class="card-text"><%= workshop.date.strftime("%B %d, %Y %H:%M") %></p>
                 <div class="mt-auto d-flex justify-content-between">
-                  <%= button_to 'Cancel', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn text-white', style:"background-color: #ff7c00; border-radius: 0px;" %>
+                  <%= button_to 'Cancel', workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn text-white prova', style:"background-color: #ff7c00; border-radius: 0px;" %>
                   <%= link_to 'Chat with Host', chat_workshop_booking_path(workshop, workshop.bookings.find_by(user: current_user)), class: "btn text-white", style:"background-color: #ff7c00; border-radius: 0px;" %>
                 </div>
               </div>
