@@ -9,12 +9,12 @@
     </div>
   </div>
   <% if @booked_workshops.empty? %>
-    <h2 class="text-white mb-5">Hey! you didn´t booked any workshop yet! You should go on the homepage and search for some workshop <i class="fa-solid fa-face-laugh-wink"></i></h2>
+    <h2 class="text-white mb-5">Hey! you didn´t book any workshop yet! Go to the homepage and find a workshop!</h2>
     <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
   <% else %>
     <div class="row mx-0" data-filter-target="upcoming">
       <% if @upcoming_workshops.empty? %>
-        <h2 class="text-white mb-5" style="font-family: 'Lovelo', sans-serif;">No upcoming workshops here! Nothing to see <i class="fa-regular fa-face-grin-tongue-wink"></i> Cammon go to the homepage and book some new one! Let´s stay inspired <i class="fa-solid fa-face-laugh-wink"></i></h2>
+        <h2 class="text-white mb-5" style="font-family: 'Lovelo', sans-serif;">No upcoming workshops! Go to the homepage and book some new one! Let´s stay inspired</h2>
         <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
       <% else %>
         <% @upcoming_workshops.each do |workshop| %>
@@ -40,8 +40,8 @@
     </div>
     <div class="row d-none" data-filter-target="past">
       <% if @past_workshops.empty? %>
-        <h2 class="text-white mb-5">No workshops you booked belong to the past...mmm... a solution could be book more workshops? <i class="fa-regular fa-face-grin-tongue-wink"></i></h2>
-        <%= link_to "Go to homepage", root_path, class: "btn rounded-pill text-white mb-5", style:"font-family: Lovelo; background-color: #d70c99;" %>
+        <h2 class="text-white mb-5">Any workshops you booked belong to the past</h2>
+        <%= link_to "Go to homepage", root_path, class: "btn text-white mb-5", style:"width: 6rem;background-color: #d70c99;" %>
       <% else %>
         <% @past_workshops.each do |workshop| %>
           <div class="col-md-6 mb-4">
