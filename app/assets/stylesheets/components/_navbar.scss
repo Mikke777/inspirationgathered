@@ -14,3 +14,21 @@
 .nav-link{
   font-family: 'Lovelo', sans-serif;
 }
+
+@media screen and (max-width: 685px) {
+  .nav-link {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 625px) {
+  .nav-link {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .nav-link {
+    font-size: 1rem;
+  }
+}
