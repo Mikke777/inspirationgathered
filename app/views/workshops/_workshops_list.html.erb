@@ -8,9 +8,13 @@
           <div class="col-md-6 mb-4">
             <div class="card h-100 d-flex flex-column" style="padding: 0; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
               <% if workshop.photo.attached? %>
-                <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+                <%= link_to workshop_path(workshop), data: { turbo_frame: "_top" } do %>
+                  <%= cl_image_tag workshop.photo.key, class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+                <% end %>
               <% else %>
-                <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+                <%= link_to workshop_path(workshop), data: { turbo_frame: "_top" } do %>
+                  <%= image_tag "noimage.jpg", class: "card-img-top img-fluid", style: "height: 15rem; width: 100%; object-fit: cover;" %>
+                <% end %>
               <% end %>
               <div class="card-body p-2 d-flex flex-column">
                 <h2 class="card-title" style="font-family: 'Lovelo', sans-serif;"><%= link_to workshop.title, workshop_path(workshop), class: "text-decoration-none", data: { turbo_frame: "_top" }, style:"color: black; font-family: 'Lovelo', sans-serif; font-weight: bold; font-size: 1.5rem;" %></h2>
