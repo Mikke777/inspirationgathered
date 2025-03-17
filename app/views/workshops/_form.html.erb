@@ -10,7 +10,7 @@
     input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
     wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
     %>
-    <%= f.input :places, label_html: { style: "color: white;" }, required: true %>
+    <%= f.input :places, label_html: { style: "color: white;" }, input_html: { min: 1 }, required: true %>
   </div>
 
   <div class="form-actions d-flex justify-content-between">
