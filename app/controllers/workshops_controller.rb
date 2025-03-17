@@ -82,6 +82,6 @@ class WorkshopsController < ApplicationController
   end
 
   def workshop_params
-    params.require(:workshop).permit(:title, :description, :photo, :date, :address, :latitude, :longitude)
+    params.require(:workshop).permit(:title, :description, :photo, :date, :address, :latitude, :longitude, :places)
   end
 end

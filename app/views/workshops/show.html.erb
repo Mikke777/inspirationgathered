@@ -27,6 +27,9 @@
       </div>
       <div>
         <h1 style="margin-top: 2rem; color: white;"><%= @workshop.title %></h1>
+        <% if @workshop.places.present? %>
+          <p style="font-family: Lovelo; color: white;">Free Places: <%= @workshop.available_places %></p>
+        <% end %>
         <p style="color: white;"><%= @workshop.description %></p>
         <p style="font-family: Lovelo; color: white;"><%= @workshop.address %></p>
       </div>

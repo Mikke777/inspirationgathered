@@ -5,12 +5,15 @@ class BookingsController < ApplicationController
 
   def create
     @workshop = Workshop.find(params[:workshop_id])
-    @booking = @workshop.bookings.build(user: current_user)
-
-    if @booking.save
-      redirect_to @workshop, notice: 'You have successfully booked this workshop.'
+    if @workshop.can_book?
+      @booking = @workshop.bookings.build(user: current_user)
+      if @booking.save
+        redirect_to @workshop, notice: 'You have successfully booked this workshop.'
+      else
+        redirect_to @workshop, alert: 'Unable to book this workshop.'
+      end
     else
-      redirect_to @workshop, alert: 'Unable to book this workshop.'
+      redirect_to @workshop, alert: 'No available places for this workshop.'
     end
   end
 

@@ -11,6 +11,16 @@ class Workshop < ApplicationRecord
   validates :address, presence: true
   validates :date, presence: true
   validates :photo, presence: true
+  validates :places, numericality: { greater_than_or_equal_to: 1 }
+  validate :places_not_decreased, on: :update
+
+  def available_places
+    (places || 10) - bookings.count
+  end
+
+  def can_book?
+    available_places > 0
+  end
 
 
   include PgSearch::Model
@@ -30,6 +40,12 @@ class Workshop < ApplicationRecord
   def photo_size
     if photo.attached? && photo.blob.byte_size > 1.megabyte
       errors.add(:photo, "size should be less than 1MB")
+    end
+  end
+
+  def places_not_decreased
+    if places_changed? && places_was > places
+      errors.add(:places, "cannot be decreased once bookings have been made")
     end
   end
 end
