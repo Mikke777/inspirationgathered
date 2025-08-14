@@ -28,4 +28,16 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  bookings:
+    no_places: "No available places for this workshop."
+    success: "You have successfully booked this workshop."
+    failure: "Unable to book this workshop."
+    canceled: "Your booking has been canceled."
+    unauthorized: "You are not authorized to view this page."
+  messages:
+    sent_success: "Message sent successfully."
+    unauthorized: "You are not authorized to perform this action."
+  workshops:
+    created: "Workshop was successfully created."
+    updated: "Workshop was successfully updated."
+    destroyed: "Workshop was successfully destroyed."

@@ -20,8 +20,8 @@ class User < ApplicationRecord
   private
 
   def photo_size
-    if photo.attached? && photo.blob.byte_size > 1.megabyte
-      errors.add(:photo, "size should be less than 1MB")
-    end
+    return unless photo.attached? && photo.blob.byte_size > 1.megabyte
+
+    errors.add(:photo, "size should be less than 1MB")
   end
 end
