@@ -12,6 +12,7 @@ AllCops:
     - 'support/**/*'
     - 'tmp/**/*'
     - 'test/**/*'
+    - 'vendor/**/*'
 
 Style/ConditionalAssignment:
   Enabled: false
