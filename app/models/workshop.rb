@@ -19,33 +19,31 @@ class Workshop < ApplicationRecord
   end
 
   def can_book?
-    available_places > 0
+    available_places.positive?
   end
-
 
   include PgSearch::Model
 
-
   pg_search_scope :global_search,
-  against: [ :title, :description, :address ],
-  associated_against: {
-    user: [ :name, :last_name ]
-  },
-  using: {
-    tsearch: { prefix: true }
-  }
+                  against: %i[title description address],
+                  associated_against: {
+                    user: %i[name last_name]
+                  },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 
   private
 
   def photo_size
-    if photo.attached? && photo.blob.byte_size > 1.megabyte
-      errors.add(:photo, "size should be less than 1MB")
-    end
+    return unless photo.attached? && photo.blob.byte_size > 1.megabyte
+
+    errors.add(:photo, "size should be less than 1MB")
   end
 
   def places_not_decreased
-    if places_changed? && places_was > places
-      errors.add(:places, "cannot be decreased once bookings have been made")
-    end
+    return unless places_changed? && places_was > places
+
+    errors.add(:places, "cannot be decreased once bookings have been made")
   end
 end
