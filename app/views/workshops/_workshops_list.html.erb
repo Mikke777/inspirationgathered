@@ -2,7 +2,7 @@
   <p>No workshops available</p>
 <% else %>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="row">
         <% workshops.each do |workshop| %>
           <div class="col-md-6 mb-4">
@@ -33,7 +33,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-4 d-none d-md-block">
+    <div class="col-md-5 d-none d-md-block mb-4">
       <div class="col-12" style="height: 100vh; position: sticky; top: 0;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
