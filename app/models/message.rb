@@ -8,6 +8,8 @@ class Message < ApplicationRecord
 
   scope :unread, -> { where(read: false) }
 
+  encrypts :content
+
   private
 
   def broadcast_message
