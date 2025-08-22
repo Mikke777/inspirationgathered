@@ -45,6 +45,7 @@ gem "cloudinary"
 gem "geocoder"
 gem "solid_cable"
 gem "pg_search"
+gem "noticed"
 
 group :development, :test do
   gem "dotenv-rails"

@@ -1,0 +1,47 @@
+<% unread_notifications_count = current_user.notifications.unread.count %>
+<% unread_notifications = current_user.notifications.unread %>
+
+<!-- Desktop: bell icon, md and up -->
+<turbo-frame id="notifications_badge">
+  <%= turbo_stream_from "user_#{current_user.id}_notifications" %>
+  <li class="nav-item dropdown d-none d-md-block" aria-labelledby="notificationsDropdown" style="height: 100%;">
+    <a href="#" class="nav-link d-flex align-items-center justify-content-center h-100" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa-solid fa-bell <%= 'text-danger' if unread_notifications_count > 0 %>"></i>
+      <% if unread_notifications_count > 0 %>
+        <span class="badge bg-danger text-white"><%= unread_notifications_count %></span>
+      <% end %>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <% if unread_notifications.any? %>
+        <% unread_notifications.each do |notification| %>
+        <%= button_to mark_as_read_notification_path(notification, redirect_path: chat_workshop_booking_path(notification.params[:message].booking.workshop, notification.params[:message].booking)), method: :post, data: { turbo_frame: "_top" }, class: "dropdown-item" do %>
+          <%= notification.params[:message] ? "#{notification.params[:message].booking.workshop.title} - New message" : "New notification" %>
+        <% end %>
+        <% end %>
+      <% else %>
+        <span class="dropdown-item">No new notifications</span>
+      <% end %>
+    </div>
+  </li>
+
+  <!-- Mobile: text, sm and down -->
+  <li class="nav-item dropdown d-md-none" aria-labelledby="notificationsDropdown">
+    <a href="#" class="nav-link" id="navbarDropdownMobile" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <p class="<%= 'text-danger' if unread_notifications_count > 0 %> mb-0">Notifications</p>
+      <% if unread_notifications_count > 0 %>
+        <span class="badge bg-danger text-white"><%= unread_notifications_count %></span>
+      <% end %>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMobile">
+      <% if unread_notifications.any? %>
+        <% unread_notifications.each do |notification| %>
+        <%= button_to mark_as_read_notification_path(notification, redirect_path: chat_workshop_booking_path(notification.params[:message].booking.workshop, notification.params[:message].booking)), method: :post, data: { turbo_frame: "_top" }, class: "dropdown-item" do %>
+          <%= notification.params[:message] ? "#{notification.params[:message].booking.workshop.title} - New message" : "New notification" %>
+        <% end %>
+        <% end %>
+      <% else %>
+        <span class="dropdown-item">No new notifications</span>
+      <% end %>
+    </div>
+  </li>
+</turbo-frame>

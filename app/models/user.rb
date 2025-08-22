@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :booked_workshops, through: :bookings, source: :workshop
   has_many :messages, dependent: :destroy
+  has_many :notifications, as: :recipient, class_name: "Noticed::Notification", dependent: :destroy
 
   validates :name, presence: true
   validates :last_name, presence: true
