@@ -15,6 +15,12 @@ Rails.application.routes.draw do
       get :inbox
     end
   end
+
+  resources :notifications, only: [] do
+    member do
+      post :mark_as_read
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

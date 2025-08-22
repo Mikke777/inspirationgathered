@@ -45,17 +45,6 @@
                           <div>
                             <p><strong>Booked by:</strong> <%= link_to booking.user.name, user_path(booking.user), style:"text-decoration: none; font-family: Lovelo; color: #ff7c00;" %></p>
                           </div>
-                          <div>
-                            <% unread_messages_count = booking.messages.where.not(user: current_user).unread.count %>
-                            <% total_messages_count = booking.messages.count %>
-                            <% if unread_messages_count > 0 %>
-                              <p><strong><i class="fa-solid fa-comment-sms"></i></strong> <span class="badge bg-danger text-white" style="font-size: 1rem"><%= unread_messages_count %> unread</span></p>                            <% else %>
-                              <p class="text-muted">No unread messages.</p>
-                            <% end %>
-                            <% if total_messages_count > 0 %>
-                              <%= link_to 'View Chat', chat_workshop_booking_path(workshop, booking), style: "text-decoration: none; font-family: Lovelo; color: black;" %>
-                            <% end %>
-                          </div>
                         </div>
                       </li>
                     <% end %>
