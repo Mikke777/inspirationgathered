@@ -34,6 +34,9 @@ en:
     failure: "Unable to book this workshop."
     canceled: "Your booking has been canceled."
     unauthorized: "You are not authorized to view this page."
+    accepted: "Booking accepted."
+    rejected: "Booking rejected."
+    request_sent: "Booking request sent to host."
   messages:
     sent_success: "Message sent successfully."
     unauthorized: "You are not authorized to perform this action."

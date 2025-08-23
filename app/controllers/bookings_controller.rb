@@ -16,6 +16,18 @@ class BookingsController < ApplicationController
     end
   end
 
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.update(status: "accepted")
+    redirect_to @booking.workshop, notice: t('bookings.accepted')
+  end
+
+  def reject
+    @booking = Booking.find(params[:id])
+    @booking.update(status: "rejected")
+    redirect_to @booking.workshop, notice: t('bookings.rejected')
+  end
+
   def chat
     @messages = @booking.messages.order(created_at: :asc)
     @messages.where.not(user: current_user).find_each do |message|
@@ -38,9 +50,9 @@ class BookingsController < ApplicationController
   end
 
   def handle_booking_creation
-    @booking = @workshop.bookings.build(user: current_user)
+    @booking = @workshop.bookings.build(user: current_user, status: "pending")
     if @booking.save
-      redirect_to @workshop, notice: t('bookings.success')
+      redirect_to @workshop, notice: t('bookings.request_sent')
     else
       redirect_to @workshop, alert: t('bookings.failure')
     end
