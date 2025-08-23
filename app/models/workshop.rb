@@ -15,7 +15,7 @@ class Workshop < ApplicationRecord
   validate :places_not_decreased, on: :update
 
   def available_places
-    (places || 10) - bookings.count
+    (places || 10) - bookings.where(status: "accepted").count
   end
 
   def can_book?

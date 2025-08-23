@@ -47,6 +47,15 @@
                           </div>
                         </div>
                       </li>
+                      <li style="list-style: none;">
+                        <% if booking.status.present? %>
+                          <p><strong>Status:</strong> <%= booking.status.capitalize %></p>
+                          <% if booking.status == "pending" %>
+                            <%= button_to "Accept", accept_workshop_booking_path(workshop, booking), method: :post, class: "btn btn-success btn-sm me-2" %>
+                            <%= button_to "Reject", reject_workshop_booking_path(workshop, booking), method: :post, class: "btn btn-danger btn-sm" %>
+                          <% end %>
+                        <% end %>
+                      </li>
                     <% end %>
                   </ul>
                 <% end %>

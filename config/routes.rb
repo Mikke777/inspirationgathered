@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create, :destroy] do
       member do
         get :chat
+        post :accept
+        post :reject
       end
       resources :messages, only: [:create]
     end
