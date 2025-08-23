@@ -65,7 +65,8 @@ class WorkshopsController < ApplicationController
   end
 
   def inbox
-    @bookings = current_user.bookings.joins(:workshop).where(workshops: { date: Time.zone.today.beginning_of_day.. })
+    @bookings = current_user.bookings.joins(:workshop).where(workshops: { date: Time.zone.today.beginning_of_day.. },
+                                                             status: "accepted")
     @workshops = current_user.workshops.includes(:bookings).where(date: Time.zone.today.beginning_of_day..)
   end
 
