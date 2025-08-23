@@ -1,0 +1,16 @@
+<div class="container mt-1" style="height: 60vh;">
+  <h1>Workshops to Review</h1>
+  <div class="col-md-12 p-5">
+    <% if @workshops_to_review.any? %>
+    <% @workshops_to_review.each do |workshop| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h2><%= link_to workshop.title, workshop_path(workshop), style: "text-decoration: none; color: inherit;" %></h2>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No workshops to review.</p>
+  <% end %>
+  </div>
+</div>

@@ -42,36 +42,41 @@
           <p style="font-family: Lovelo; color: white;"><%= @workshop.date.strftime("%B %d, %Y %H:%M") %></p>
         </div>
         <div class="col-12 col-md-auto d-flex flex-column flex-md-row">
-          <% if @workshop.date < Date.today %>
-            <% if @workshop.user == current_user %>
-              <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" style="font-family: Lovelo" disabled>Workshop in the past, you can't edit or delete</button>
-            <% else %>
-              <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" style="font-family: Lovelo" disabled>Workshop in the past, you can't book it</button>
-            <% end %>
+         <% if @workshop.date < Date.today %>
+          <% if @workshop.user == current_user %>
+            <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" style="font-family: Lovelo" disabled>Workshop in the past, you can't edit or delete</button>
           <% else %>
-            <% if user_signed_in? && @workshop.user != current_user %>
-              <% booking = @workshop.bookings.find_by(user: current_user) %>
-              <% if booking.present? %>
-                <% if booking.status == "pending" %>
-                  <button class="btn w-100 mb-2 mb-md-0 me-md-2" disabled style="border-radius: 0px; color: white; background-color: #ff7c00;">
-                    Booking request pending
-                  </button>
-                <% elsif booking.status == "accepted" %>
-                  <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, booking), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn w-100 mb-2 mb-md-0 me-md-2', style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
-                <% elsif booking.status == "rejected" %>
-                  <button class="btn w-100 mb-2 mb-md-0 me-md-2" disabled style="border-radius: 0px; color: white; background-color: #ff7c00;">
-                    Booking request rejected
-                  </button>
-                <% end %>
-              <% else %>
-                <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn w-100 mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
+            <button class="btn btn-secondary w-100 mb-2 mb-md-0 me-md-2 rounded-pill" style="font-family: Lovelo" disabled>Workshop in the past, you can't book it</button>
+          <% end %>
+        <% else %>
+          <% if user_signed_in? && current_user.admin? %>
+            <% unless @workshop.published? %>
+              <%= button_to "Approve", approve_workshop_path(@workshop), method: :post, class: "btn btn-success me-2" %>
+            <% end %>
+            <%= link_to 'Delete', @workshop, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn w-100", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
+          <% elsif user_signed_in? && @workshop.user != current_user %>
+            <% booking = @workshop.bookings.find_by(user: current_user) %>
+            <% if booking.present? %>
+              <% if booking.status == "pending" %>
+                <button class="btn w-100 mb-2 mb-md-0 me-md-2" disabled style="border-radius: 0px; color: white; background-color: #ff7c00;">
+                  Booking request pending
+                </button>
+              <% elsif booking.status == "accepted" %>
+                <%= button_to 'Cancel Booking', workshop_booking_path(@workshop, booking), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn w-100 mb-2 mb-md-0 me-md-2', style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
+              <% elsif booking.status == "rejected" %>
+                <button class="btn w-100 mb-2 mb-md-0 me-md-2" disabled style="border-radius: 0px; color: white; background-color: #ff7c00;">
+                  Booking request rejected
+                </button>
               <% end %>
+            <% else %>
+              <%= button_to 'Book Workshop', workshop_bookings_path(@workshop), method: :post, class: "btn w-100 mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
             <% end %>
           <% end %>
           <% if user_signed_in? && @workshop.user == current_user && @workshop.date >= Date.today %>
             <%= link_to 'Edit', edit_workshop_path(@workshop), class: "btn w-100 mb-2 mb-md-0 me-md-2", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
             <%= link_to 'Delete', @workshop, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn w-100", style:"border-radius: 0px; color: white; background-color: #ff7c00;" %>
           <% end %>
+        <% end %>
         </div>
       </div>
     </div>

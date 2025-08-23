@@ -4,7 +4,7 @@ class WorkshopsController < ApplicationController
   before_action :set_workshop_for_show, only: [:show]
 
   def index
-    @workshops = Workshop.where(date: Time.zone.today.beginning_of_day..)
+    @workshops = Workshop.where(date: Time.zone.today.beginning_of_day.., published: true)
     @workshops = @workshops.global_search(params[:query]) if params[:query].present?
     @markers = @workshops.geocoded.map do |workshop|
       {
@@ -48,6 +48,10 @@ class WorkshopsController < ApplicationController
   end
 
   def destroy
+    unless @workshop.user == current_user || current_user.admin?
+      redirect_to root_path, alert: "Not authorized"
+      return
+    end
     @workshop.destroy
     redirect_to root_path, notice: t('workshops.destroyed')
   end
@@ -70,10 +74,16 @@ class WorkshopsController < ApplicationController
     @workshops = current_user.workshops.includes(:bookings).where(date: Time.zone.today.beginning_of_day..)
   end
 
+  def approve
+    @workshop = Workshop.find(params[:id])
+    @workshop.update(published: true)
+    redirect_to root_path, notice: "Workshop approved!"
+  end
+
   private
 
   def set_workshop
-    @workshop = current_user.workshops.find(params[:id])
+    @workshop = Workshop.find(params[:id])
   end
 
   def set_workshop_for_show
