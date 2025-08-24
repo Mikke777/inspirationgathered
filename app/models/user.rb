@@ -11,11 +11,11 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :notifications, as: :recipient, class_name: "Noticed::Notification", dependent: :destroy
 
-  validates :name, presence: true
-  validates :last_name, presence: true
+  validates :name, presence: true, unless: :admin?
+  validates :last_name, presence: true, unless: :admin?
   validates :email, presence: true, uniqueness: true
-  validates :description, presence: true, length: { maximum: 500 }
-  validates :photo, presence: true
+  validates :description, presence: true, length: { maximum: 500 }, unless: :admin?
+  validates :photo, presence: true, unless: :admin?
   validate :photo_size
 
   private

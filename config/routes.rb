@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get "admin_dashboard/index"
   devise_for :users
   root to: "workshops#index"
   resources :users, only: [:show]
   resources :workshops do
+    member do
+      post :approve
+    end
     resources :bookings, only: [:create, :destroy] do
       member do
         get :chat
@@ -23,6 +27,8 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+
+  get '/admin', to: 'admin_dashboard#index', as: :admin_dashboard
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
