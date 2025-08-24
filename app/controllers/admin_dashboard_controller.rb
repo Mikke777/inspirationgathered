@@ -3,7 +3,7 @@ class AdminDashboardController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @workshops_to_review = Workshop.where(published: false)
+    @workshops_to_review = Workshop.where(date: Time.zone.today.beginning_of_day.., published: false)
   end
 
   private
