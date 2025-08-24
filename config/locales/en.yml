@@ -41,6 +41,10 @@ en:
     sent_success: "Message sent successfully."
     unauthorized: "You are not authorized to perform this action."
   workshops:
+    approved: "Workshop approved!"
     created: "Workshop was successfully created."
     updated: "Workshop was successfully updated."
     destroyed: "Workshop was successfully destroyed."
+    not_authorized: "Not authorized"
+  admin_dashboard:
+    not_authorized: "You must be an admin to access this page."

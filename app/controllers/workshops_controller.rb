@@ -49,7 +49,7 @@ class WorkshopsController < ApplicationController
 
   def destroy
     unless @workshop.user == current_user || current_user.admin?
-      redirect_to root_path, alert: "Not authorized"
+      redirect_to root_path, alert: t('workshops.not_authorized')
       return
     end
     @workshop.destroy
@@ -77,7 +77,7 @@ class WorkshopsController < ApplicationController
   def approve
     @workshop = Workshop.find(params[:id])
     @workshop.update(published: true)
-    redirect_to root_path, notice: "Workshop approved!"
+    redirect_to root_path, notice: t('workshops.approved')
   end
 
   private

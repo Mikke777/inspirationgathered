@@ -6,9 +6,9 @@ class AdminDashboardController < ApplicationController
     @workshops_to_review = Workshop.where(published: false)
   end
 
-    private
+  private
 
   def authenticate_admin!
-    redirect_to new_user_session_path, alert: "You must be an admin to access this page." unless current_user&.admin?
+    redirect_to new_user_session_path, alert: t('admin_dashboard.not_authorized') unless current_user&.admin?
   end
 end
