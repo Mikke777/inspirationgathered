@@ -2,6 +2,7 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :booking
   after_create_commit :notify_recipient
+  has_many :notifications, class_name: "Noticed::Notification", as: :record, dependent: :destroy
 
   validates :content, presence: true
   after_create_commit :broadcast_message
@@ -21,7 +22,7 @@ class Message < ApplicationRecord
 
   def notify_recipient
     recipient = booking.user == user ? booking.workshop.user : booking.user
-    NewMessageNotifier.with(message: self).deliver_later(recipient)
+    NewMessageNotifier.with(message: self, record: self).deliver_later(recipient)
     Turbo::StreamsChannel.broadcast_replace_to(
       "user_#{recipient.id}_notifications",
       target: "notifications_badge",
