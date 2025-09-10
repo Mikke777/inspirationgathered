@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :send_welcome_email
+
   has_one_attached :photo
   has_many :workshops, dependent: :destroy
   has_many :bookings, dependent: :destroy
@@ -24,5 +26,9 @@ class User < ApplicationRecord
     return unless photo.attached? && photo.blob.byte_size > 1.megabyte
 
     errors.add(:photo, "size should be less than 1MB")
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 end
