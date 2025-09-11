@@ -57,7 +57,7 @@ class WorkshopsController < ApplicationController
   end
 
   def booked
-    @booked_workshops = current_user.booked_workshops.joins(:bookings).where(bookings: { status: "accepted" })
+    @booked_workshops = Workshop.joins(:bookings).where(bookings: { user_id: current_user.id, status: "accepted" })
     @upcoming_workshops = @booked_workshops.where(date: Time.zone.today.beginning_of_day..)
     @past_workshops = @booked_workshops.where(date: ...Time.zone.today.beginning_of_day)
   end
