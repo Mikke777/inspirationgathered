@@ -1,8 +1,50 @@
-<p>Hi <%= @user.name %>,</p>
-
-<p>We look forward to seeing you get inspired! Or are you inspiring others?
-Either way, we are happy to have you and you have made it to the cool side of the internet!
-Let's gather inspiration! :)</p>
-
-<p>Kindest regards,</p>
-<p>the Inspiration Gathered Team</p>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8f8f8; padding:0; margin:0;">
+  <tr>
+    <td align="center" style="padding:24px 0 12px 0;">
+      <%= image_tag "http://res.cloudinary.com/do8wdblfk/image/upload/v1757614721/foqwhvwjydrtgayteovg.jpg", alt: "Inspiration Gathered Logo", style: "width:100%; max-width:200px; height:auto; display:block; margin:0 auto;" %>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table width="90%" cellpadding="0" cellspacing="0" border="0" style="background:#f8f8f8; border:1px solid #d70c99; padding:20px; border-radius:5px; box-shadow:0 0 10px rgba(0,0,0,0.1); margin:0 auto; text-align:center;">
+        <tr>
+          <td>
+            <p style="margin:0 0 16px 0;">Hi <span style="font-weight:bold; color:#d70c99;"><%= @user.name %></span>,</p>
+            <p style="margin:0 0 16px 0;">
+              We look forward to seeing you <span style="font-weight:bold; color:#d70c99;">get inspired</span>! Or are you <span style="font-weight:bold; color:#d70c99;">inspiring others</span>?<br>
+              Either way, we are happy to have you and you have made it to the cool side of the internet!<br>
+              Let's gather inspiration! :)
+            </p>
+            <p style="margin:0 0 8px 0;">Kindest regards,</p>
+            <p style="margin:0;">the Inspiration Gathered Team</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:24px 0 12px 0;">
+      <table width="90%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto; text-align:center;">
+        <tr>
+          <td style="padding:0 4px;">
+            <%= image_tag "http://res.cloudinary.com/do8wdblfk/image/upload/v1757667820/uxj8nqmrfflxomvp8beb.jpg", alt:"Workshop in Bali", style: "width:100%; max-width:180px; height:auto; display:inline-block; margin:0 auto 8px auto;" %>
+          </td>
+          <td style="padding:0 4px;">
+            <%= image_tag "https://res.cloudinary.com/do8wdblfk/image/upload/v1757668265/vkmwmi5asx7mvznlo2wf.png", alt:"Comics line of Inspiration", style: "width:100%; max-width:180px; height:auto; display:inline-block; margin:0 auto 8px auto;" %>
+          </td>
+          <td style="padding:0 4px;">
+            <%= image_tag "http://res.cloudinary.com/do8wdblfk/image/upload/v1757668442/xwbruaz9wenpbncxizbe.jpg", alt:"Workshop in Bali", style: "width:100%; max-width:180px; height:auto; display:inline-block; margin:0 auto 8px auto;" %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:16px 0;">
+      <p style="margin:0 0 8px 0;">Follow us on social media for more inspiration:</p>
+      <a href="https://www.linkedin.com/company/inspiration-gathered/posts/?feedView=all" style="margin:0 8px; color:#d70c99; text-decoration:none;">LinkedIn</a>
+      <a href="https://www.facebook.com/inspirationgathered" style="margin:0 8px; color:#d70c99; text-decoration:none;">Facebook</a>
+      <a href="https://www.instagram.com/inspirationgathered/" style="margin:0 8px; color:#d70c99; text-decoration:none;">Instagram</a>
+    </td>
+  </tr>
+</table>
