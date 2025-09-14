@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'no-reply@inspiration-gathered-24e6542ae8fc.herokuapp.com'
+  config.mailer_sender = 'no-reply@sandbox096ace58dbd8462da5b91e1c4df94346.mailgun.org'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
