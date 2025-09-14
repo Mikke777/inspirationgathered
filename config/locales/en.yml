@@ -48,3 +48,5 @@ en:
     not_authorized: "Not authorized"
   admin_dashboard:
     not_authorized: "You must be an admin to access this page."
+  user_mailer:
+    welcome_subject: "Welcome to Inspiration Gathered!"
