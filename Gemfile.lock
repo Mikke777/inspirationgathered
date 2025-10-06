@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/heartcombo/simple_form.git
-  revision: c2c7faf3e532072e1ef511a97d677ae0e7c38957
+  revision: 74b9c684f9809720d1527b50fe20b2bf57438b94
   specs:
     simple_form (5.3.1)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
 
 GEM
   remote: https://rubygems.org/
@@ -208,21 +208,21 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.9-aarch64-linux-gnu)
+    nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-aarch64-linux-musl)
+    nokogiri (1.18.10-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm-linux-gnu)
+    nokogiri (1.18.10-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm-linux-musl)
+    nokogiri (1.18.10-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm64-darwin)
+    nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-darwin)
+    nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-gnu)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-musl)
+    nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
     noticed (2.8.1)
       rails (>= 6.1.0)
