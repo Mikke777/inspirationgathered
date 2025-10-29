@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/heartcombo/simple_form.git
-  revision: c2c7faf3e532072e1ef511a97d677ae0e7c38957
+  revision: 44384d3ca7c77aef1e56d965b22197af62a80c5f
   specs:
-    simple_form (5.3.1)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
+    simple_form (5.4.0)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
 
 GEM
   remote: https://rubygems.org/
